@@ -50,6 +50,7 @@ public class Round implements IListener {
 
         z.addListener(speaker);
         l.addListener(speaker);
+        turn.addListener(speaker);
 
         round.start(z, l);
     }

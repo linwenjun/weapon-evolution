@@ -1,19 +1,29 @@
 package com.thoughtworks.academy;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public class PhysicalAttack implements IAttack {
+public class PhysicalAttack extends Publisher implements IAttack {
     private int attack = 10;
 
-    public PhysicalAttack() {}
+    public PhysicalAttack() {
+        addListener(new Speaker());
+    }
 
     public PhysicalAttack(int attack) {
+        this();
         this.attack = attack;
     }
 
     public void actOnReceiver(Player receiver) {
         int hurtValue = attack - receiver.getDefense();
         hurtValue = Math.max(0, hurtValue);
+
+        Map<String, String> info = new HashMap<String, String>();
+        info.put("name", receiver.getName());
+        info.put("hurt", hurtValue + "");
+        notifyListeners(new GameMessage("beenAttack", info));
+
         receiver.beenAttack(hurtValue);
     }
 
