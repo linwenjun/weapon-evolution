@@ -1,5 +1,6 @@
 package com.thoughtworks.academy;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,11 @@ public class Publisher {
 
     public void notifyListeners(GameMessage message) {
         for(IListener listener : listeners) {
-            listener.update(message);
+            try {
+                listener.update(message);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

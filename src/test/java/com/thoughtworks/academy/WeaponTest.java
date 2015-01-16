@@ -15,8 +15,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
-@PrepareForTest(Weapon.class)
 @RunWith(PowerMockRunner.class)
+@PrepareForTest(Weapon.class)
 public class WeaponTest {
     private Weapon weapon;
 

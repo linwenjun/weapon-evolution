@@ -21,7 +21,7 @@ public class SpeakerTest {
     }
 
     @Test
-    public void testSay() throws Exception {
+    public void testSayAttacked() throws Exception {
 
         IListener speaker = new Speaker();
         Map<String, String> info = new HashMap<String, String>();
@@ -29,5 +29,50 @@ public class SpeakerTest {
         speaker.update(new GameMessage("die", info));
 
         assertThat(outContent.toString(), is("tom被打败了。\n"));
+    }
+
+    @Test
+    public void testSayUpdateBlood() throws Exception {
+
+        IListener speaker = new Speaker();
+        Map<String, String> info = new HashMap<String, String>();
+        info.put("name", "tom");
+        info.put("blood", "100");
+        speaker.update(new GameMessage("updateBlood", info));
+
+        assertThat(outContent.toString(), is("tom剩余生命：100\n"));
+    }
+
+    @Test
+    public void testSayAttack() throws Exception {
+        IListener speaker = new Speaker();
+        Map<String, String> info = new HashMap<String, String>();
+        info.put("provider", "tom");
+        info.put("receiver", "bob");
+        speaker.update(new GameMessage("attack", info));
+
+        assertThat(outContent.toString(), is("tom攻击了bob,"));
+    }
+
+    @Test
+    public void testSayBeenAttack() throws Exception {
+
+        IListener speaker = new Speaker();
+        Map<String, String> info = new HashMap<String, String>();
+        info.put("name", "tom");
+        info.put("hurt", "100");
+        speaker.update(new GameMessage("beenAttack", info));
+
+        assertThat(outContent.toString(), is("tom受到了100点伤害,"));
+    }
+
+    @Test
+    public void testSayNotExistedPattern() throws Exception {
+
+        IListener speaker = new Speaker();
+        Map<String, String> info = new HashMap<String, String>();
+        speaker.update(new GameMessage("notExist", info));
+
+        assertThat(outContent.toString(), is(""));
     }
 }

@@ -21,8 +21,7 @@ public class TurnTest {
 
         verify(tom, times(1)).releaseStateAttack();
         verify(tom, times(1)).getAttackList();
-        verify(attackManager, times(1)).actOnProvider(tom);
-        verify(attackManager, times(1)).actOnReceiver(jack);
+        verify(attackManager, times(1)).actOnPlayer(tom, jack);
     }
 
     @Test

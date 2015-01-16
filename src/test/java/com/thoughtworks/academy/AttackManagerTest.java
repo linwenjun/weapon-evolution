@@ -1,16 +1,24 @@
 package com.thoughtworks.academy;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import static junit.framework.TestCase.assertNull;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.mockito.Mockito.mock;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
+import static org.powermock.api.mockito.PowerMockito.verifyNew;
+import static org.powermock.api.mockito.PowerMockito.whenNew;
 
+
+@PrepareForTest(AttackManager.class)
+@RunWith(PowerMockRunner.class)
 public class AttackManagerTest {
 
     @Test
@@ -59,5 +67,29 @@ public class AttackManagerTest {
         Map<String, IAttack> expectAttackMap = attackManager.getMap();
         PhysicalAttack attack = (PhysicalAttack)expectAttackMap.get("physical");
         assertNull(attack);
+    }
+
+    @Test
+    public void testAttackManagerShouldInvokeActOnProvider() throws Exception {
+
+        Player provider = mock(Player.class);
+        Player receiver = mock(Player.class);
+        AttackManager attackManager = mock(AttackManager.class);
+
+        Turn turn = new Turn(attackManager);
+        turn.process(provider, receiver);
+        verify(attackManager, times(1)).actOnPlayer(provider, receiver);
+    }
+
+    @Test
+    public void testActOnPlayer() throws Exception {
+        Player tom = mock(Player.class);
+        Player bob = mock(Player.class);
+
+        whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
+        AttackManager attackManager = new AttackManager();
+        attackManager.actOnPlayer(tom, bob);
+
+        verifyNew(GameMessage.class).withArguments(eq("attack"), anyObject());
     }
 }
