@@ -85,4 +85,8 @@ public class Player extends Publisher {
             this.stateAttack = (FireStateAttack)this.stateAttack.update(stateAttack);
         }
     }
+
+    public void setWeapon(Weapon weapon) {
+        throw new RuntimeException();
+    }
 }

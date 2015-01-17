@@ -49,9 +49,11 @@ public class SpeakerTest {
         Map<String, String> info = new HashMap<String, String>();
         info.put("provider", "tom");
         info.put("receiver", "bob");
+        info.put("providerCareer", "普通人");
+        info.put("receiverCareer", "普通人");
         speaker.update(new GameMessage("attack", info));
 
-        assertThat(outContent.toString(), is("tom攻击了bob,"));
+        assertThat(outContent.toString(), is("普通人tom攻击了普通人bob,"));
     }
 
     @Test

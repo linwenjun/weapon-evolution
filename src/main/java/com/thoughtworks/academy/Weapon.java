@@ -12,7 +12,7 @@ public class Weapon {
     private double fireExtraAttackRate = 0.25;
 
     public Weapon(String name) {
-        new Weapon(name, 10);
+        this(name, 10);
     }
 
     public Weapon(String name, int attackVal) {

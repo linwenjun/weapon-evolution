@@ -41,13 +41,15 @@ public class Round implements IListener {
     }
 
     public static void main(String[] args) {
-        Player z = new Player("张三", 100, 12);
+        Soldier z = new Soldier("张三", 100, 12);
         Player l = new Player("李四", 90, 14);
-        Speaker speaker = new Speaker();
-        AttackManager attackManager = new AttackManager();
-        Turn turn = new Turn(attackManager);
+        Weapon sword= new Weapon("金蛇剑");
+        PhysicalAttackHandler physicalAttackHandler = new PhysicalAttackHandler();
+        Turn turn = new Turn(physicalAttackHandler);
         Round round = new Round(turn);
+        Speaker speaker = new Speaker();
 
+        z.setWeapon(sword);
         z.addListener(speaker);
         l.addListener(speaker);
 

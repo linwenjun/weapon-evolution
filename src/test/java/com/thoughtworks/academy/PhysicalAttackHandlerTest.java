@@ -17,23 +17,26 @@ import static org.powermock.api.mockito.PowerMockito.verifyNew;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 
-@PrepareForTest(AttackManager.class)
+@PrepareForTest(PhysicalAttackHandler.class)
 @RunWith(PowerMockRunner.class)
-public class AttackManagerTest {
+public class PhysicalAttackHandlerTest {
 
     @Test
     public void testManagerOneAttack() throws Exception {
-        AttackManager attackManager = new AttackManager();
-        IAttack bodyAttack = new PhysicalAttack();
-        attackManager.add(bodyAttack);
+        PhysicalAttackHandler physicalAttackHandler = new PhysicalAttackHandler();
 
-        Map<String, IAttack> attackMap = attackManager.getMap();
-        assertThat(attackMap.get("physical"), is(bodyAttack));
+        Player tom = mock(Player.class);
+        Player bob = mock(Player.class);
+        when(tom.getAttack()).thenReturn(10);
+
+        physicalAttackHandler.actOnPlayers(tom, bob);
+
+        verify(bob, times(1)).beenAttack(10);
     }
 
     @Test
     public void testManagerMoreThanOneAttack() throws Exception {
-        AttackManager attackManager = new AttackManager();
+        PhysicalAttackHandler physicalAttackHandler = new PhysicalAttackHandler();
         IAttack attack1 = new PhysicalAttack();
         IAttack attack2 = new PhysicalAttack();
 
@@ -41,9 +44,9 @@ public class AttackManagerTest {
         attackList.add(attack1);
         attackList.add(attack2);
 
-        attackManager.add(attackList);
+        physicalAttackHandler.add(attackList);
 
-        Map<String, IAttack> expectAttackMap = attackManager.getMap();
+        Map<String, IAttack> expectAttackMap = physicalAttackHandler.getMap();
 
         PhysicalAttack attack = (PhysicalAttack)expectAttackMap.get("physical");
         assertThat(attack.getAttack(), is(20));
@@ -51,7 +54,7 @@ public class AttackManagerTest {
 
     @Test
     public void testAttackManagerShouldBeCleanAfterActOnReceiver() throws Exception {
-        AttackManager attackManager = new AttackManager();
+        PhysicalAttackHandler physicalAttackHandler = new PhysicalAttackHandler();
         IAttack attack1 = new PhysicalAttack();
         IAttack attack2 = new PhysicalAttack();
 
@@ -59,12 +62,12 @@ public class AttackManagerTest {
         attackList.add(attack1);
         attackList.add(attack2);
 
-        attackManager.add(attackList);
+        physicalAttackHandler.add(attackList);
 
         Player tom = mock(Player.class);
-        attackManager.actOnReceiver(tom);
+        physicalAttackHandler.actOnReceiver(tom);
 
-        Map<String, IAttack> expectAttackMap = attackManager.getMap();
+        Map<String, IAttack> expectAttackMap = physicalAttackHandler.getMap();
         PhysicalAttack attack = (PhysicalAttack)expectAttackMap.get("physical");
         assertNull(attack);
     }
@@ -74,11 +77,11 @@ public class AttackManagerTest {
 
         Player provider = mock(Player.class);
         Player receiver = mock(Player.class);
-        AttackManager attackManager = mock(AttackManager.class);
+        PhysicalAttackHandler physicalAttackHandler = mock(PhysicalAttackHandler.class);
 
-        Turn turn = new Turn(attackManager);
+        Turn turn = new Turn(physicalAttackHandler);
         turn.process(provider, receiver);
-        verify(attackManager, times(1)).actOnPlayer(provider, receiver);
+        verify(physicalAttackHandler, times(1)).actOnPlayer(provider, receiver);
     }
 
     @Test
@@ -87,9 +90,22 @@ public class AttackManagerTest {
         Player bob = mock(Player.class);
 
         whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
-        AttackManager attackManager = new AttackManager();
-        attackManager.actOnPlayer(tom, bob);
+        PhysicalAttackHandler physicalAttackHandler = new PhysicalAttackHandler();
+        physicalAttackHandler.actOnPlayer(tom, bob);
 
         verifyNew(GameMessage.class).withArguments(eq("attack"), anyObject());
+    }
+
+    @Test
+    public void testActOnPlayerWithWeapon() throws Exception {
+        Soldier tom = mock(Soldier.class);
+        Player bob = mock(Player.class);
+        when(tom.getWeapon()).thenReturn(mock(Weapon.class));
+
+        whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
+        PhysicalAttackHandler physicalAttackHandler = new PhysicalAttackHandler();
+        physicalAttackHandler.actOnPlayer(tom, bob);
+
+        verifyNew(GameMessage.class).withArguments(eq("attackWithWeapon"), anyObject());
     }
 }

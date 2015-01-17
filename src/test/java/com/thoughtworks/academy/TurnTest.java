@@ -14,26 +14,26 @@ public class TurnTest {
     public void testTurn() throws Exception {
         Player tom = mock(Player.class);
         Soldier jack = mock(Soldier.class);
-        AttackManager attackManager = mock(AttackManager.class);
+        PhysicalAttackHandler physicalAttackHandler = mock(PhysicalAttackHandler.class);
 
-        Turn turn = new Turn(attackManager);
+        Turn turn = new Turn(physicalAttackHandler);
         turn.process(tom, jack);
 
         verify(tom, times(1)).releaseStateAttack();
         verify(tom, times(1)).getAttackList();
-        verify(attackManager, times(1)).actOnPlayer(tom, jack);
+        verify(physicalAttackHandler, times(1)).actOnPlayer(tom, jack);
     }
 
     @Test
     public void testSoliderCanAttackUseWeapon() throws Exception {
-        AttackManager attackManager = new AttackManager();
+        PhysicalAttackHandler physicalAttackHandler = new PhysicalAttackHandler();
         Soldier tom = new Soldier("tom");
         Player jerry = new Soldier("jerry");
         Weapon sword = new Weapon("金蛇剑", 10);
         tom.setWeapon(sword);
         jerry.setDefense(3);
 
-        Turn turn = new Turn(attackManager);
+        Turn turn = new Turn(physicalAttackHandler);
         turn.process(tom, jerry);
 
         assertThat(jerry.getBlood(), is(83));

@@ -4,10 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AttackManager extends Publisher {
+public class PhysicalAttackHandler extends Publisher {
     private Map<String, IAttack> attackList = new HashMap<String, IAttack>();
-    private GameMessage gameMessage;
 
+    public PhysicalAttackHandler() {
+        this.addListener(new Speaker());
+    }
 
     public void add(IAttack attack) {
         attack.appendTo(attackList);
@@ -15,18 +17,17 @@ public class AttackManager extends Publisher {
 
     public void add(List<IAttack> attackList) {
 
-        for(IAttack attack : attackList) {
+        for (IAttack attack : attackList) {
             this.add(attack);
         }
     }
 
-    public Map<String,IAttack> getMap() {
+    public Map<String, IAttack> getMap() {
         return attackList;
     }
 
     public void actOnReceiver(Player receiver) {
-
-        for(String type : attackList.keySet()) {
+        for (String type : attackList.keySet()) {
             IAttack attack = attackList.get(type);
             attack.actOnReceiver(receiver);
         }
@@ -39,9 +40,24 @@ public class AttackManager extends Publisher {
         Map<String, String> info = new HashMap<String, String>();
         info.put("provider", provider.getName());
         info.put("receiver", receiver.getName());
-        gameMessage = new GameMessage("attack", info);
+        info.put("providerCareer", provider.getCareer());
+        info.put("receiverCareer", receiver.getCareer());
+        GameMessage gameMessage;
+
+        if (null != provider.getWeapon()) {
+            info.put("weapon", provider.getWeapon().getName());
+            gameMessage = new GameMessage("attackWithWeapon", info);
+        } else {
+            gameMessage = new GameMessage("attack", info);
+        }
+
         notifyListeners(gameMessage);
 
         this.actOnReceiver(receiver);
+    }
+
+    public void actOnPlayers(Player provider, Player receiver) {
+        int hurtValue = provider.getAttack();
+        receiver.beenAttack(hurtValue);
     }
 }

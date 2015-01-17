@@ -2,13 +2,11 @@ package com.thoughtworks.academy;
 
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertNull;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class PlayerTest {
 
@@ -21,7 +19,7 @@ public class PlayerTest {
         assertThat(tom.getBlood(), is(100));
         assertThat(tom.getAttack(), is(25));
 
-        assertNull(tom.getWeapon());
+        assertThat(tom.getWeapon(), is(nullValue()));
     }
 
     @Test
@@ -63,5 +61,15 @@ public class PlayerTest {
         tom.beenAttack(100);
         verify(speaker1, times(2)).update(any(GameMessage.class));
         verify(speaker2, times(2)).update(any(GameMessage.class));
+    }
+
+    @Test
+    public void testPlayerWithWeapon() throws Exception {
+        Soldier tom = new Soldier("tom");
+        Weapon weapon = mock(Weapon.class);
+
+        tom.setWeapon(weapon);
+
+        assertThat(tom.getWeapon(), is(weapon));
     }
 }
