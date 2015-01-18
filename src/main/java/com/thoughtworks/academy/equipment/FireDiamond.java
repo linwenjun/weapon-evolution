@@ -12,7 +12,7 @@ public class FireDiamond implements IDiamond {
         Random random = new Random();
 
         if(random.nextDouble() < ATTACH_RATE) {
-            receiver.attachStateAttack(new FireStateAttack());
+            receiver.addStateAttack(new FireStateAttack());
         }
     }
 }

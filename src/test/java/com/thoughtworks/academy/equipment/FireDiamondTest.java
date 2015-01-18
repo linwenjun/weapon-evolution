@@ -27,7 +27,7 @@ public class FireDiamondTest {
         FireDiamond diamond = new FireDiamond();
         diamond.actOnReceiver(tom);
 
-        verify(tom, times(1)).attachStateAttack(any(FireStateAttack.class));
+        verify(tom, times(1)).addStateAttack(any(FireStateAttack.class));
     }
 
     @Test
@@ -41,6 +41,6 @@ public class FireDiamondTest {
         FireDiamond diamond = new FireDiamond();
         diamond.actOnReceiver(tom);
 
-        verify(tom, never()).attachStateAttack(any(FireStateAttack.class));
+        verify(tom, never()).addStateAttack(any(FireStateAttack.class));
     }
 }

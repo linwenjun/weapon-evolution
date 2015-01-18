@@ -1,8 +1,11 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.equipment.FireDiamond;
+import com.thoughtworks.academy.equipment.IDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
 import com.thoughtworks.academy.handler.GameHandler;
 import com.thoughtworks.academy.handler.PhysicalAttackHandler;
+import com.thoughtworks.academy.handler.StateAttackHandler;
 
 public class Round implements IListener {
     private Turn turn;
@@ -15,8 +18,11 @@ public class Round implements IListener {
 
         this.p1 = p1;
         this.p2 = p2;
-        GameHandler handler = new PhysicalAttackHandler(null);
-        this.turn = new Turn(handler);
+
+        GameHandler stateAttackHandler = new StateAttackHandler(null);
+        GameHandler physicalAttackHandler = new PhysicalAttackHandler(stateAttackHandler);
+
+        this.turn = new Turn(physicalAttackHandler);
 
         Publisher.getInstance().addListener(this);
     }
@@ -50,6 +56,9 @@ public class Round implements IListener {
         Soldier zhang = new Soldier("张三", 100, 12);
         Player li = new Player("李四", 90, 14);
         Weapon sword = new Weapon("金蛇剑", 10);
+        IDiamond fireDiamond = new FireDiamond();
+
+        sword.attachDiamond(fireDiamond);
         zhang.setWeapon(sword);
 
         Speaker speaker = new Speaker();
