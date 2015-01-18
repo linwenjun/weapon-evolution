@@ -13,7 +13,7 @@ public class FireStateAttack extends StateAttack {
     private int TURN_COUNT = 3;
     private int hurtValue = 5;
     private List<Integer> multipleList = new ArrayList<Integer>();
-    protected String type = "fire";
+    protected String type = "Fire";
 
     public FireStateAttack() {
         for(int i=0; i< TURN_COUNT; i++) {
@@ -58,6 +58,6 @@ public class FireStateAttack extends StateAttack {
     }
 
     public String getType() {
-        return "fire";
+        return type;
     }
 }

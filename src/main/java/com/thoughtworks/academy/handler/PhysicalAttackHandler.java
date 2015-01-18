@@ -21,7 +21,7 @@ public class PhysicalAttackHandler extends GameHandler {
             hurtValue += provider.getWeapon().getAttackValue();
         }
 
-        if(provider.isLive() && receiver.isLive()) {
+        if(!provider.isDead() && !receiver.isDead()) {
             updateMessage(provider, receiver);
             receiver.beenAttack(hurtValue);
         }

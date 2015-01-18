@@ -22,13 +22,15 @@ public class FireStateAttackTest {
     @Test
     public void testNewFireStateAttack() throws Exception {
         StateAttack fireStateAttack = new FireStateAttack();
-        assertThat(fireStateAttack.getType(), is("fire"));
+        assertThat(fireStateAttack.getType(), is("Fire"));
     }
 
     @Test
     public void testFireStateAttack() throws Exception {
 
         StateAttack fireStateAttack = new FireStateAttack();
+
+
         Player tom = new Player("tom");
         tom.addStateAttack(fireStateAttack);
 

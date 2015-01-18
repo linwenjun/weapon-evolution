@@ -1,16 +1,35 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.attack.StateAttack;
 import com.thoughtworks.academy.equipment.Weapon;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
+import static org.powermock.api.mockito.PowerMockito.verifyNew;
+import static org.powermock.api.mockito.PowerMockito.whenNew;
 
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Player.class)
 public class PlayerTest {
+
+    Player tom;
+
+    @Before
+    public void setUp() throws Exception {
+        tom = new Player("tom");
+
+    }
 
     @After
     public void tearDown() throws Exception {
@@ -77,5 +96,25 @@ public class PlayerTest {
         assertThat(tom.isLocked(), is(true));
         tom.unlock();
         assertThat(tom.isLocked(), is(false));
+    }
+
+    @Test
+    public void testAddStateAttack() throws Exception {
+        StateAttack stateAttack = mock(StateAttack.class);
+        when(stateAttack.getType()).thenReturn("Fire");
+        whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
+
+        tom.addStateAttack(stateAttack);
+        verifyNew(GameMessage.class).withArguments(eq("beenAttackByFire"), any(Map.class));
+    }
+
+    @Test
+    public void testAddStateFreezeAttack() throws Exception {
+        StateAttack stateAttack = mock(StateAttack.class);
+        when(stateAttack.getType()).thenReturn("Freeze");
+        whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
+
+        tom.addStateAttack(stateAttack);
+        verifyNew(GameMessage.class).withArguments(eq("beenAttackByFreeze"), any(Map.class));
     }
 }

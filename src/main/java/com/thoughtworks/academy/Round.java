@@ -13,7 +13,6 @@ public class Round implements IListener {
     private int maxCount = 100;
 
     public Round(Player p1, Player p2) {
-
         this.p1 = p1;
         this.p2 = p2;
 

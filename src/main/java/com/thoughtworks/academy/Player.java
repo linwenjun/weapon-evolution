@@ -70,15 +70,18 @@ public class Player {
     public void addStateAttack(StateAttack stateAttack) {
 
         if(null != stateAttack) {
+            String type = stateAttack.getType();
             Map<String, String> info = new HashMap<String, String>();
             info.put("receiver", name);
-            Publisher.getInstance().notifyListeners(new GameMessage("beenAttackByFire", info));
+            Publisher.getInstance().notifyListeners(new GameMessage("beenAttackBy" + type, info));
         }
 
         if(null == this.stateAttack) {
             this.stateAttack = stateAttack;
-        } else {
+        } else if(null != stateAttack) {
             this.stateAttack = this.stateAttack.update(stateAttack);
+        } else {
+            this.stateAttack = null;
         }
     }
 

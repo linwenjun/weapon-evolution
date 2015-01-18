@@ -1,5 +1,6 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.handler.GameHandler;
 import com.thoughtworks.academy.handler.PhysicalAttackHandler;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,8 +25,8 @@ public class RoundTest {
         whenNew(Turn.class).withAnyArguments().thenReturn(mock(Turn.class));
         new Round(tom, bob);
 
-        verifyNew(PhysicalAttackHandler.class).withArguments(null);
-        verifyNew(Turn.class).withArguments(handler);
+        verifyNew(PhysicalAttackHandler.class).withArguments(any(GameHandler.class));
+        verifyNew(Turn.class).withArguments(any(GameHandler.class));
     }
 
     @Test

@@ -22,6 +22,6 @@ public class StateAttackHandlerTest {
         Player tom = mock(Player.class);
 
         stateAttackHandler.actOn(bob, tom);
-        verify(tom, times(1)).releaseStateAttack();
+        verify(bob, times(1)).releaseStateAttack();
     }
 }
