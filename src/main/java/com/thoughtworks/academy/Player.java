@@ -88,4 +88,7 @@ public class Player {
     public void setWeapon(Weapon weapon) {
         throw new RuntimeException();
     }
+
+    public void attachStateAttack(StateAttack any) {
+    }
 }
