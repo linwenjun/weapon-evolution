@@ -3,6 +3,7 @@ package com.thoughtworks.academy;
 import com.thoughtworks.academy.equipment.FireDiamond;
 import com.thoughtworks.academy.equipment.IDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
+import com.thoughtworks.academy.handler.DiamondEffectHandler;
 import com.thoughtworks.academy.handler.GameHandler;
 import com.thoughtworks.academy.handler.PhysicalAttackHandler;
 import com.thoughtworks.academy.handler.StateAttackHandler;
@@ -19,10 +20,11 @@ public class Round implements IListener {
         this.p1 = p1;
         this.p2 = p2;
 
-        GameHandler stateAttackHandler = new StateAttackHandler(null);
-        GameHandler physicalAttackHandler = new PhysicalAttackHandler(stateAttackHandler);
+        DiamondEffectHandler diamondEffectHandler = new DiamondEffectHandler(null);
+        GameHandler physicalAttackHandler = new PhysicalAttackHandler(diamondEffectHandler);
+        GameHandler stateAttackHandler = new StateAttackHandler(physicalAttackHandler);
 
-        this.turn = new Turn(physicalAttackHandler);
+        this.turn = new Turn(stateAttackHandler);
 
         Publisher.getInstance().addListener(this);
     }

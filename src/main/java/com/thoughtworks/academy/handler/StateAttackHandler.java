@@ -10,6 +10,6 @@ public class StateAttackHandler extends  GameHandler{
 
     @Override
     protected void actOnPlayers(Player provider, Player receiver) {
-        receiver.releaseStateAttack();
+        provider.releaseStateAttack();
     }
 }

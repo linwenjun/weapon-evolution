@@ -9,7 +9,7 @@ public abstract class GameHandler {
         this.successor = successor;
     }
 
-    public void actOn(Player provider, Player receiver) {
+    public final void actOn(Player provider, Player receiver) {
         this.actOnPlayers(provider, receiver);
 
         if (null != successor) {

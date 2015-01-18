@@ -24,7 +24,6 @@ public class FireStateAttack extends StateAttack {
     @Override
     public void actOnReceiver(Player receiver) {
         int hurtVal = hurtValue * multipleList.get(0);
-        receiver.beenAttack(hurtVal);
 
         Map<String, String> info = new HashMap<String, String>();
         info.put("receiver", receiver.getName());
@@ -32,6 +31,8 @@ public class FireStateAttack extends StateAttack {
 
         GameMessage gameMessage = new GameMessage("attackWithFire", info);
         Publisher.getInstance().notifyListeners(gameMessage);
+
+        receiver.beenAttack(hurtVal);
 
         multipleList.remove(0);
         if(multipleList.size() == 0) {
