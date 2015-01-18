@@ -5,7 +5,7 @@ import com.thoughtworks.academy.attack.FireStateAttack;
 
 import java.util.Random;
 
-public class FireDiamond {
+public class FireDiamond implements IDiamond {
     private final double ATTACH_RATE = 0.25;
 
     public void actOnReceiver(Player receiver) {

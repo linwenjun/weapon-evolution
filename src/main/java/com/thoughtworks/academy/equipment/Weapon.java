@@ -5,6 +5,7 @@ public class Weapon {
     private final int attackValue;
     private String name;
     private IAttack extraAttack;
+    private IDiamond diamond;
 
     public Weapon(String name, int attackVal) {
         this.name = name;
@@ -15,15 +16,16 @@ public class Weapon {
         return name;
     }
 
-    public void addExtraAttack(IAttack attack) {
-        this.extraAttack = attack;
-    }
-
     public int getAttackValue() {
         return attackValue;
     }
 
-    public IAttack getExtraAttack() {
-        return extraAttack;
+    public void attachDiamond(IDiamond diamond) {
+        this.diamond = diamond;
+    }
+
+
+    public IDiamond getDiamond() {
+        return diamond;
     }
 }

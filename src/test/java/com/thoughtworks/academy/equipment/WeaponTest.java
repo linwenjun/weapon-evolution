@@ -1,6 +1,5 @@
 package com.thoughtworks.academy.equipment;
 
-import com.thoughtworks.academy.attack.FireStateAttack;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,11 +16,11 @@ public class WeaponTest {
 
     @Test
     public void testCreateWeapon() throws Exception {
-        IAttack attackAttack = new FireStateAttack();
-        weapon.addExtraAttack(attackAttack);
+        IDiamond diamond = new FireDiamond();
+        weapon.attachDiamond(diamond);
 
         assertThat(weapon.getName(), is("优质木棒"));
         assertThat(weapon.getAttackValue(), is(10));
-        assertThat(weapon.getExtraAttack(), is(attackAttack));
+        assertThat(weapon.getDiamond(), is(diamond));
     }
 }
