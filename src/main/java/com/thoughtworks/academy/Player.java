@@ -14,11 +14,13 @@ public class Player {
     private int attack;
     private StateAttack stateAttack;
     private Weapon weapon;
+    private boolean locked;
 
     public Player(String name, int blood, int attack) {
         this.name = name;
         this.blood = blood;
         this.attack = attack;
+        this.locked = false;
     }
 
     public Player(String name) {
@@ -94,5 +96,18 @@ public class Player {
 
     public boolean isDead() {
         return blood <= 0;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void lock() {
+        this.locked = true;
+    }
+
+
+    public void unlock() {
+        this.locked = false;
     }
 }

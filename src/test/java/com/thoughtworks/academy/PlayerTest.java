@@ -67,4 +67,15 @@ public class PlayerTest {
 
         assertThat(tom.getWeapon(), is(weapon));
     }
+
+    @Test
+    public void testPlayerLock() throws Exception {
+
+        Player tom = new Player("tom");
+        assertThat(tom.isLocked(), is(false));
+        tom.lock();
+        assertThat(tom.isLocked(), is(true));
+        tom.unlock();
+        assertThat(tom.isLocked(), is(false));
+    }
 }
