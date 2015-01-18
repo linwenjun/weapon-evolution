@@ -12,6 +12,10 @@ public class DiamondEffectHandler extends GameHandler {
 
     @Override
     protected void actOnPlayers(Player provider, Player receiver) {
+        if (provider.isDead() || receiver.isDead() || provider.isLocked()) {
+            return;
+        }
+
         Weapon weapon = provider.getWeapon();
 
         if(null == weapon) {

@@ -1,5 +1,6 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.handler.GameHandler;
 import com.thoughtworks.academy.handler.PhysicalAttackHandler;
 import org.junit.Test;
 
@@ -17,5 +18,18 @@ public class TurnTest {
         turn.process(tom, jack);
 
         verify(physicalAttackHandler, times(1)).actOn(tom, jack);
+    }
+
+    @Test
+    public void testProviderWillUnlockAfterTurn() throws Exception {
+        Player tom = mock(Player.class);
+        Soldier jack = mock(Soldier.class);
+        GameHandler gameHandler = mock(GameHandler.class);
+
+
+        Turn turn = new Turn(gameHandler);
+        turn.process(tom, jack);
+        verify(tom).unlock();
+
     }
 }

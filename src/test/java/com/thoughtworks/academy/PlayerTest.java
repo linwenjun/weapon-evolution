@@ -98,6 +98,8 @@ public class PlayerTest {
         assertThat(tom.isLocked(), is(false));
     }
 
+
+
     @Test
     public void testAddStateAttack() throws Exception {
         StateAttack stateAttack = mock(StateAttack.class);

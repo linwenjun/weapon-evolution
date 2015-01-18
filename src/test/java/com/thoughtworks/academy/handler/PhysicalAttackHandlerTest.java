@@ -15,19 +15,18 @@ import static org.mockito.Mockito.*;
 @RunWith(PowerMockRunner.class)
 public class PhysicalAttackHandlerTest {
     PhysicalAttackHandler physicalAttackHandler;
+    Player tom;
+    Player bob;
 
     @Before
     public void setUp() throws Exception {
         physicalAttackHandler = new PhysicalAttackHandler(null);
-
-
+        tom = mock(Player.class);
+        bob = mock(Player.class);
     }
 
     @Test
     public void testMainTaskOfPhysicalAttackHandler() throws Exception {
-
-        Player tom = mock(Player.class);
-        Player bob = mock(Player.class);
         when(tom.getAttack()).thenReturn(10);
 
         physicalAttackHandler.actOnPlayers(tom, bob);
@@ -39,8 +38,6 @@ public class PhysicalAttackHandlerTest {
     public void testPhysicalAttackWithWeapon() throws Exception {
 
         Weapon sword = mock(Weapon.class);
-        Player tom = mock(Player.class);
-        Player bob = mock(Player.class);
         when(sword.getAttackValue()).thenReturn(5);
         when(tom.getAttack()).thenReturn(10);
         when(tom.getWeapon()).thenReturn(sword);
@@ -52,10 +49,7 @@ public class PhysicalAttackHandlerTest {
 
     @Test
     public void testWillExecuteSuccessor() throws Exception {
-
         GameHandler handler = mock(GameHandler.class);
-        Player tom = mock(Player.class);
-        Player bob = mock(Player.class);
         when(tom.getBlood()).thenReturn(10);
         when(bob.getBlood()).thenReturn(10);
 
@@ -63,5 +57,15 @@ public class PhysicalAttackHandlerTest {
         physicalAttackHandler.actOn(tom, bob);
 
         verify(handler, times(1)).actOn(tom, bob);
+    }
+
+    @Test
+    public void testHandleWillNotExcuteWillProviderWasLocked() throws Exception {
+
+        when(tom.isLocked()).thenReturn(true);
+
+        physicalAttackHandler.actOnPlayers(tom, bob);
+
+        verify(bob, never()).beenAttack(anyInt());
     }
 }

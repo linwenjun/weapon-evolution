@@ -14,17 +14,18 @@ public class PhysicalAttackHandler extends GameHandler {
     }
 
     protected void actOnPlayers(Player provider, Player receiver) {
+        if (provider.isDead() || receiver.isDead() || provider.isLocked()) {
+            return;
+        }
 
         int hurtValue = provider.getAttack();
 
-        if(null != provider.getWeapon()) {
+        if (null != provider.getWeapon()) {
             hurtValue += provider.getWeapon().getAttackValue();
         }
 
-        if(!provider.isDead() && !receiver.isDead()) {
-            updateMessage(provider, receiver);
-            receiver.beenAttack(hurtValue);
-        }
+        updateMessage(provider, receiver);
+        receiver.beenAttack(hurtValue);
     }
 
     private void updateMessage(Player provider, Player receiver) {
@@ -36,7 +37,7 @@ public class PhysicalAttackHandler extends GameHandler {
         info.put("receiverCareer", "" + receiver.getCareer());
         info.put("receiver", "" + receiver.getName());
 
-        if(null != provider.getWeapon()) {
+        if (null != provider.getWeapon()) {
             info.put("weapon", provider.getWeapon().getName());
             gameMessage = new GameMessage("attackWithWeapon", info);
         } else {
