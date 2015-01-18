@@ -15,12 +15,14 @@ public class Player {
     private StateAttack stateAttack;
     private Weapon weapon;
     private boolean locked;
+    private Boolean energy;
 
     public Player(String name, int blood, int attack) {
         this.name = name;
         this.blood = blood;
         this.attack = attack;
-        this.locked = false;
+        locked = false;
+        energy = true;
     }
 
     public Player(String name) {
@@ -112,5 +114,17 @@ public class Player {
 
     public void unlock() {
         this.locked = false;
+    }
+
+    public Boolean hasEnergy() {
+        return energy;
+    }
+
+    public void consumeEnergy() {
+        energy = false;
+    }
+
+    public void giveEnergy() {
+        energy = true;
     }
 }

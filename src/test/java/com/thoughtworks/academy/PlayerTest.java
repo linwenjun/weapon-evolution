@@ -98,7 +98,16 @@ public class PlayerTest {
         assertThat(tom.isLocked(), is(false));
     }
 
+    @Test
+    public void testEnergy() throws Exception {
+        Player tom = new Player("tom");
 
+        assertThat(tom.hasEnergy(), is(true));
+        tom.consumeEnergy();
+        assertThat(tom.hasEnergy(), is(false));
+        tom.giveEnergy();
+        assertThat(tom.hasEnergy(), is(true));
+    }
 
     @Test
     public void testAddStateAttack() throws Exception {
