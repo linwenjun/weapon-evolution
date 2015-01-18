@@ -55,17 +55,7 @@ public class PlayerTest {
         Publisher.getInstance().addListener(listener);
 
         tom.beenAttack(50);
-        verify(listener, times(1)).update(any(GameMessage.class));
-    }
-
-    @Test
-    public void testUpdateTwoTimesMessageWhenDied() throws Exception {
-        Player tom = new Player("tom");
-        IListener listener = mock(IListener.class);
-        Publisher.getInstance().addListener(listener);
-
-        tom.beenAttack(500);
-        verify(listener, times(2)).update(any(GameMessage.class));
+        verify(listener, never()).update(any(GameMessage.class));
     }
 
     @Test

@@ -52,17 +52,6 @@ public class Player {
     public void beenAttack(int hurtValue) {
 
         blood -= hurtValue;
-
-        Publisher publisher = Publisher.getInstance();
-
-        Map<String, String> info = new HashMap<String, String>();
-        info.put("name", name);
-        info.put("blood", "" + blood);
-        publisher.notifyListeners(new GameMessage("updateBlood", info));
-
-        if(blood <= 0) {
-            publisher.notifyListeners(new GameMessage("die", info));
-        }
     }
 
     public void setDefense(int value) {
@@ -78,6 +67,12 @@ public class Player {
 
     public void addStateAttack(StateAttack stateAttack) {
 
+        if(null != stateAttack) {
+            Map<String, String> info = new HashMap<String, String>();
+            info.put("receiver", name);
+            Publisher.getInstance().notifyListeners(new GameMessage("beenAttackByFire", info));
+        }
+
         if(null == this.stateAttack) {
             this.stateAttack = stateAttack;
         } else {
@@ -91,5 +86,13 @@ public class Player {
 
     public void setWeapon(Weapon weapon) {
         throw new RuntimeException();
+    }
+
+    public boolean isLive() {
+        return blood > 0;
+    }
+
+    public boolean isDead() {
+        return blood <= 0;
     }
 }

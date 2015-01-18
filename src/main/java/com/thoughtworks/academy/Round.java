@@ -3,10 +3,7 @@ package com.thoughtworks.academy;
 import com.thoughtworks.academy.equipment.FireDiamond;
 import com.thoughtworks.academy.equipment.IDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
-import com.thoughtworks.academy.handler.DiamondEffectHandler;
-import com.thoughtworks.academy.handler.GameHandler;
-import com.thoughtworks.academy.handler.PhysicalAttackHandler;
-import com.thoughtworks.academy.handler.StateAttackHandler;
+import com.thoughtworks.academy.handler.*;
 
 public class Round implements IListener {
     private Turn turn;
@@ -20,7 +17,8 @@ public class Round implements IListener {
         this.p1 = p1;
         this.p2 = p2;
 
-        DiamondEffectHandler diamondEffectHandler = new DiamondEffectHandler(null);
+        GameHandler notifyReceiverBloodHandler = new NotifyReceiverBloodHandler(null);
+        GameHandler diamondEffectHandler = new DiamondEffectHandler(notifyReceiverBloodHandler);
         GameHandler physicalAttackHandler = new PhysicalAttackHandler(diamondEffectHandler);
         GameHandler stateAttackHandler = new StateAttackHandler(physicalAttackHandler);
 
@@ -55,18 +53,18 @@ public class Round implements IListener {
     }
 
     public static void main(String[] args) {
-        Soldier zhang = new Soldier("张三", 100, 12);
-        Player li = new Player("李四", 90, 14);
+        Soldier chang = new Soldier("张三", 200, 12);
+        Player lee = new Player("李四", 230, 14);
         Weapon sword = new Weapon("金蛇剑", 10);
         IDiamond fireDiamond = new FireDiamond();
 
         sword.attachDiamond(fireDiamond);
-        zhang.setWeapon(sword);
+        chang.setWeapon(sword);
 
         Speaker speaker = new Speaker();
         Publisher.getInstance().addListener(speaker);
 
-        Round round = new Round(zhang, li);
+        Round round = new Round(chang, lee);
         round.start();
     }
 }

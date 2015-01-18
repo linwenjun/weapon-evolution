@@ -9,7 +9,5 @@ public abstract class StateAttack implements IAttack {
         return type;
     }
 
-    public StateAttack update(StateAttack stateAttack) {
-        return stateAttack;
-    }
+    public abstract StateAttack update(StateAttack stateAttack);
 }

@@ -25,23 +25,24 @@ public class FireStateAttack extends StateAttack {
     public void actOnReceiver(Player receiver) {
         int hurtVal = hurtValue * multipleList.get(0);
 
-        Map<String, String> info = new HashMap<String, String>();
-        info.put("receiver", receiver.getName());
-        info.put("hurt", hurtVal + "");
-
-        GameMessage gameMessage = new GameMessage("attackWithFire", info);
-        Publisher.getInstance().notifyListeners(gameMessage);
-
         receiver.beenAttack(hurtVal);
 
         multipleList.remove(0);
         if(multipleList.size() == 0) {
             receiver.addStateAttack(null);
         }
+
+        Map<String, String> info = new HashMap<String, String>();
+        info.put("receiver", receiver.getName());
+        info.put("hurt", hurtVal + "");
+        info.put("blood", receiver.getBlood() + "");
+
+        GameMessage gameMessage = new GameMessage("attackWithFire", info);
+        Publisher.getInstance().notifyListeners(gameMessage);
     }
 
-    public StateAttack update(FireStateAttack fireStateAttack) {
 
+    public StateAttack update(StateAttack stateAttack) {
         List<Integer> result = new  ArrayList<Integer>();
         for(int i=0; i<multipleList.size(); i++) {
             result.add(multipleList.get(i) + 1);
