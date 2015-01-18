@@ -1,6 +1,11 @@
 package com.thoughtworks.academy.attack;
 
+import com.thoughtworks.academy.GameMessage;
 import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.Publisher;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FreezeStateAttack extends StateAttack {
     private int fightCount;
@@ -32,6 +37,12 @@ public class FreezeStateAttack extends StateAttack {
 
         if(0 == count % 2) {
             receiver.lock();
+
+            Map<String, String> info = new HashMap<String, String>();
+            info.put("receiver", receiver.getName());
+            info.put("blood", receiver.getBlood() + "");
+            Publisher.getInstance().notifyListeners(new GameMessage("attackWithFreeze", info));
+
             fightCount++;
         }
 

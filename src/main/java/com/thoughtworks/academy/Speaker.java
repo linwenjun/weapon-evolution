@@ -15,6 +15,7 @@ public class Speaker implements IListener {
             templateMap.put("attackWithWeapon", "{{providerCareer}}{{provider}}用{{weapon}}攻击了{{receiverCareer}}{{receiver}},");
             templateMap.put("beenAttack", "{{name}}受到了{{hurt}}点伤害,");
             templateMap.put("attackWithFire", "{{receiver}}受到{{hurt}}点火焰伤害,{{receiver}}剩余生命：{{blood}}\n");
+            templateMap.put("attackWithFreeze", "{{receiver}}冻得直哆嗦，没有击中张三\n");
             templateMap.put("beenAttackByFire", "{{receiver}}着火了,");
             templateMap.put("beenAttackByFreeze", "{{receiver}}冻僵了,");
 
