@@ -1,7 +1,7 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.equipment.AbstractDiamond;
 import com.thoughtworks.academy.equipment.FreezeDiamond;
-import com.thoughtworks.academy.equipment.IDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
 import com.thoughtworks.academy.handler.*;
 
@@ -55,7 +55,7 @@ public class Round implements IListener {
         Soldier chang = new Soldier("张三", 200, 12);
         Player lee = new Player("李四", 230, 14);
         Weapon sword = new Weapon("金蛇剑", 10);
-        IDiamond diamond = new FreezeDiamond();
+        AbstractDiamond diamond = new FreezeDiamond();
 //        IDiamond fireDiamond = new FireDiamond();
 
         sword.attachDiamond(diamond);

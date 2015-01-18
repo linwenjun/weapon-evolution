@@ -16,7 +16,7 @@ public class WeaponTest {
 
     @Test
     public void testCreateWeapon() throws Exception {
-        IDiamond diamond = new FireDiamond();
+        AbstractDiamond diamond = new FireDiamond();
         weapon.attachDiamond(diamond);
 
         assertThat(weapon.getName(), is("优质木棒"));

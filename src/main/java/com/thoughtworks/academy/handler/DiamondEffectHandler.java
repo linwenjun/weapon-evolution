@@ -1,7 +1,7 @@
 package com.thoughtworks.academy.handler;
 
 import com.thoughtworks.academy.Player;
-import com.thoughtworks.academy.equipment.IDiamond;
+import com.thoughtworks.academy.equipment.AbstractDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
 
 public class DiamondEffectHandler extends GameHandler {
@@ -22,7 +22,7 @@ public class DiamondEffectHandler extends GameHandler {
             return;
         }
 
-        IDiamond diamond = weapon.getDiamond();
+        AbstractDiamond diamond = weapon.getDiamond();
 
         if(null == diamond) {
             return;

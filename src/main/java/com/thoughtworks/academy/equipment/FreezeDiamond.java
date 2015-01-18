@@ -3,18 +3,10 @@ package com.thoughtworks.academy.equipment;
 import com.thoughtworks.academy.Player;
 import com.thoughtworks.academy.attack.FreezeStateAttack;
 
-import java.util.Random;
-
-public class FreezeDiamond implements IDiamond{
-
-    private static final double OCCUR_RATE = 0.25;
+public class FreezeDiamond extends AbstractDiamond {
 
     @Override
-    public void actOnPlayers(Player provider, Player receiver) {
-        Random random = new Random();
-
-        if(random.nextDouble() < OCCUR_RATE) {
-            receiver.addStateAttack(new FreezeStateAttack());
-        }
+    protected void actOnReceiver(Player receiver) {
+        receiver.addStateAttack(new FreezeStateAttack());
     }
 }
