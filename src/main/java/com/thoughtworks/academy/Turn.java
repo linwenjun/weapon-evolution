@@ -1,16 +1,15 @@
 package com.thoughtworks.academy;
 
-public class Turn {
-    private PhysicalAttackHandler physicalAttackHandler;
+import com.thoughtworks.academy.handler.GameHandler;
 
-    public Turn(PhysicalAttackHandler physicalAttackHandler) {
-        this.physicalAttackHandler = physicalAttackHandler;
+public class Turn {
+    private GameHandler handler;
+
+    public Turn(GameHandler handler) {
+        this.handler = handler;
     }
 
     public void process(Player provider, Player receiver) {
-        provider.releaseStateAttack();
-
-        physicalAttackHandler.add(provider.getAttackList());
-        physicalAttackHandler.actOnPlayer(provider, receiver);
+        handler.actOn(provider, receiver);
     }
 }

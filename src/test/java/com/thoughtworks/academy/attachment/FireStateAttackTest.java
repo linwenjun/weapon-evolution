@@ -1,11 +1,20 @@
-package com.thoughtworks.academy;
+package com.thoughtworks.academy.attachment;
 
+import com.thoughtworks.academy.Player;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class FireStateAttackTest {
+
+    @Test
+    public void testNewFireStateAttack() throws Exception {
+
+        FireStateAttack fireStateAttack = new FireStateAttack();
+        assertThat(fireStateAttack.getType(), is("fire"));
+    }
+
     @Test
     public void testFireStateAttack() throws Exception {
 

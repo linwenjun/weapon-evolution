@@ -1,17 +1,18 @@
 package com.thoughtworks.academy;
 
-import java.util.ArrayList;
+import com.thoughtworks.academy.attachment.FireStateAttack;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Player extends Publisher {
+public class Player {
     protected int defense;
 
     private String name;
     private int blood;
     private int attack;
     private FireStateAttack stateAttack;
+    private Weapon weapon;
 
     public Player(String name, int blood, int attack) {
         this.name = name;
@@ -48,16 +49,17 @@ public class Player extends Publisher {
     }
 
     public void beenAttack(int hurtValue) {
+
         blood -= hurtValue;
 
+        Publisher publisher = Publisher.getInstance();
         Map<String, String> info = new HashMap<String, String>();
-
         info.put("name", name);
         info.put("blood", "" + blood);
-        notifyListeners(new GameMessage("updateBlood", info));
+        publisher.notifyListeners(new GameMessage("updateBlood", info));
 
         if(blood <= 0) {
-            notifyListeners(new GameMessage("die", info));
+            publisher.notifyListeners(new GameMessage("die", info));
         }
     }
 
@@ -70,12 +72,6 @@ public class Player extends Publisher {
         if(null == stateAttack) return;
 
         stateAttack.actOnReceiver(this);
-    }
-
-    public List<IAttack> getAttackList() {
-        List<IAttack> result = new ArrayList<IAttack>();
-        result.add(new PhysicalAttack(attack));
-        return result;
     }
 
     public void addStateAttack(FireStateAttack stateAttack) {

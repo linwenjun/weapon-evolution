@@ -1,8 +1,5 @@
 package com.thoughtworks.academy;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Soldier extends Player {
     private Weapon weapon;
 
@@ -33,10 +30,4 @@ public class Soldier extends Player {
         this.weapon = weapon;
     }
 
-    public List<IAttack> getAttackList() {
-        List<IAttack> result = new ArrayList<IAttack>();
-        result.addAll(super.getAttackList());
-        result.addAll(weapon.getAttackList());
-        return result;
-    }
 }

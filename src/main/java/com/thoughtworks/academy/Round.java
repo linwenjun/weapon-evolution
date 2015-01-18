@@ -1,5 +1,8 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.handler.GameHandler;
+import com.thoughtworks.academy.handler.PhysicalAttackHandler;
+
 public class Round implements IListener {
     private Turn turn;
     private boolean isProcess = true;
@@ -7,22 +10,24 @@ public class Round implements IListener {
     private Player p2;
     private int maxCount = 100;
 
-    public Round(Turn turn) {
-        this.turn = turn;
-    }
+    public Round(Player p1, Player p2) {
 
-    public void start(Player p1, Player p2) {
         this.p1 = p1;
         this.p2 = p2;
-        p1.addListener(this);
-        p2.addListener(this);
+        GameHandler handler = new PhysicalAttackHandler(null);
+        this.turn = new Turn(handler);
+
+        Publisher.getInstance().addListener(this);
+    }
+
+    public void start() {
 
         while (maxCount-- > 0) {
             if (!isProcess) {
                 break;
             }
 
-            turn.process(this.p1, this.p2);
+            turn.process(p1, p2);
             swap();
         }
     }
@@ -41,18 +46,15 @@ public class Round implements IListener {
     }
 
     public static void main(String[] args) {
-        Soldier z = new Soldier("张三", 100, 12);
-        Player l = new Player("李四", 90, 14);
-        Weapon sword= new Weapon("金蛇剑");
-        PhysicalAttackHandler physicalAttackHandler = new PhysicalAttackHandler();
-        Turn turn = new Turn(physicalAttackHandler);
-        Round round = new Round(turn);
+        Soldier zhang = new Soldier("张三", 100, 12);
+        Player li = new Player("李四", 90, 14);
+        Weapon sword = new Weapon("金蛇剑", 10);
+        zhang.setWeapon(sword);
+
         Speaker speaker = new Speaker();
+        Publisher.getInstance().addListener(speaker);
 
-        z.setWeapon(sword);
-        z.addListener(speaker);
-        l.addListener(speaker);
-
-        round.start(z, l);
+        Round round = new Round(zhang, li);
+        round.start();
     }
 }

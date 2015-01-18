@@ -1,4 +1,8 @@
-package com.thoughtworks.academy;
+package com.thoughtworks.academy.attachment;
+
+import com.thoughtworks.academy.IAttack;
+import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.StateAttack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,5 +51,9 @@ public class FireStateAttack extends StateAttack {
         multipleList = result;
 
         return this;
+    }
+
+    public String getType() {
+        return "fire";
     }
 }

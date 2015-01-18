@@ -7,6 +7,10 @@ import java.util.List;
 public class Publisher {
     private List<IListener> listeners = new ArrayList<IListener>();
 
+    private static Publisher instance;
+
+    private Publisher() {};
+
     public void addListener(IListener listener) {
         listeners.add(listener);
     }
@@ -19,5 +23,17 @@ public class Publisher {
                 e.printStackTrace();
             }
         }
+    }
+
+
+    public static Publisher getInstance() {
+        if(null == instance) {
+            instance = new Publisher();
+        }
+        return instance;
+    }
+
+    public void removeAll() {
+        listeners.removeAll(listeners);
     }
 }

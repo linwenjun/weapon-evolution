@@ -1,5 +1,6 @@
 package com.thoughtworks.academy;
 
+import org.junit.After;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,6 +11,12 @@ import static org.mockito.Mockito.*;
 
 public class PlayerTest {
 
+    @After
+    public void tearDown() throws Exception {
+
+        Publisher.getInstance().removeAll();
+    }
+
     @Test
     public void testBasicFunctionOfPlayer() throws Exception {
         Player tom = new Player("tom", 100, 25);
@@ -18,7 +25,6 @@ public class PlayerTest {
         assertThat(tom.getCareer(), is("普通人"));
         assertThat(tom.getBlood(), is(100));
         assertThat(tom.getAttack(), is(25));
-
         assertThat(tom.getWeapon(), is(nullValue()));
     }
 
@@ -42,25 +48,21 @@ public class PlayerTest {
     @Test
     public void testUpdateWhenBeenAttack() throws Exception {
         Player tom = new Player("tom");
-        IListener speaker1 = mock(Speaker.class);
-        IListener speaker2 = mock(Speaker.class);
-        tom.addListener(speaker1);
-        tom.addListener(speaker2);
+        IListener listener = mock(IListener.class);
+        Publisher.getInstance().addListener(listener);
+
         tom.beenAttack(50);
-        verify(speaker1, times(1)).update(any(GameMessage.class));
-        verify(speaker2, times(1)).update(any(GameMessage.class));
+        verify(listener, times(1)).update(any(GameMessage.class));
     }
 
     @Test
     public void testUpdateTwoTimesMessageWhenDied() throws Exception {
         Player tom = new Player("tom");
-        IListener speaker1 = mock(Speaker.class);
-        IListener speaker2 = mock(Speaker.class);
-        tom.addListener(speaker1);
-        tom.addListener(speaker2);
-        tom.beenAttack(100);
-        verify(speaker1, times(2)).update(any(GameMessage.class));
-        verify(speaker2, times(2)).update(any(GameMessage.class));
+        IListener listener = mock(IListener.class);
+        Publisher.getInstance().addListener(listener);
+
+        tom.beenAttack(500);
+        verify(listener, times(2)).update(any(GameMessage.class));
     }
 
     @Test
