@@ -24,6 +24,6 @@ public class DiamondEffectHandlerTest {
 
         handler.actOnPlayers(bob, tom);
 
-        verify(diamond, times(1)).actOnReceiver(tom);
+        verify(diamond, times(1)).actOnPlayers(bob, tom);
     }
 }

@@ -8,7 +8,8 @@ import java.util.Random;
 public class FireDiamond implements IDiamond {
     private final double ATTACH_RATE = 0.25;
 
-    public void actOnReceiver(Player receiver) {
+    @Override
+    public void actOnPlayers(Player provider, Player receiver) {
         Random random = new Random();
 
         if(random.nextDouble() < ATTACH_RATE) {

@@ -10,7 +10,10 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
+import java.util.Map;
+
 import static org.mockito.Mockito.*;
+import static org.powermock.api.mockito.PowerMockito.verifyNew;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 @RunWith(PowerMockRunner.class)
@@ -32,13 +35,17 @@ public class NotifyReceiverBloodHandlerTest {
 
     @Test
     public void testActOnPlayers() throws Exception {
-
         IListener listener = mock(IListener.class);
         GameMessage gamemessage =  mock(GameMessage.class);
-        whenNew(GameMessage.class).withAnyArguments().thenReturn(gamemessage);
-
         Publisher.getInstance().addListener(listener);
+
+        whenNew(GameMessage.class).withAnyArguments().thenReturn(gamemessage);
+        when(tom.isDead()).thenReturn(false);
+        when(tom.isLocked()).thenReturn(false);
+
         handler.actOnPlayers(tom, bob);
+
+        verifyNew(GameMessage.class).withArguments(eq("updateBlood"), any(Map.class));
         verify(listener, times(1)).update(gamemessage);
     }
 }

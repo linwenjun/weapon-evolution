@@ -18,35 +18,38 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(FreezeDiamond.class)
 public class FreezeDiamondTest {
-
-    FreezeDiamond freezeDiamond;
+    private Player tom;
+    private Player bob;
+    private FreezeDiamond freezeDiamond;
 
     @Before
     public void setUp() throws Exception {
 
+        tom = mock(Player.class);
+        bob = mock(Player.class);
         freezeDiamond = new FreezeDiamond();
+
     }
+
 
     @Test
     public void testActOnReceiver() throws Exception {
-        Player tom = mock(Player.class);
         Random random = mock(Random.class);
         when(random.nextDouble()).thenReturn(0.1);
         whenNew(Random.class).withNoArguments().thenReturn(random);
 
-        freezeDiamond.actOnReceiver(tom);
+        freezeDiamond.actOnPlayers(bob, tom);
         verifyNew(Random.class).withNoArguments();
         verify(tom, times(1)).addStateAttack(any(FreezeStateAttack.class));
     }
 
     @Test
     public void testActOnReceiverWhenRateBiggerThan25() throws Exception {
-        Player tom = mock(Player.class);
         Random random = mock(Random.class);
         when(random.nextDouble()).thenReturn(0.25);
         whenNew(Random.class).withNoArguments().thenReturn(random);
 
-        freezeDiamond.actOnReceiver(tom);
+        freezeDiamond.actOnPlayers(bob, tom);
         verifyNew(Random.class).withNoArguments();
         verify(tom, never()).addStateAttack(any(FreezeStateAttack.class));
     }

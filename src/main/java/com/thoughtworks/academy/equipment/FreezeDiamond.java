@@ -10,7 +10,7 @@ public class FreezeDiamond implements IDiamond{
     private static final double OCCUR_RATE = 0.25;
 
     @Override
-    public void actOnReceiver(Player receiver) {
+    public void actOnPlayers(Player provider, Player receiver) {
         Random random = new Random();
 
         if(random.nextDouble() < OCCUR_RATE) {

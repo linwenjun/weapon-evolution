@@ -2,6 +2,7 @@ package com.thoughtworks.academy.equipment;
 
 import com.thoughtworks.academy.Player;
 import com.thoughtworks.academy.attack.FireStateAttack;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -16,16 +17,24 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 @PrepareForTest(FireDiamond.class)
 public class FireDiamondTest {
 
+    private Player tom;
+    private Player bob;
+    @Before
+    public void setUp() throws Exception {
+
+        tom = mock(Player.class);
+        bob = mock(Player.class);
+    }
+
     @Test
     public void testNewFireDiamond() throws Exception {
         Random random = mock(Random.class);
-        Player tom = mock(Player.class);
 
         when(random.nextDouble()).thenReturn(0.1);
         whenNew(Random.class).withNoArguments().thenReturn(random);
 
         FireDiamond diamond = new FireDiamond();
-        diamond.actOnReceiver(tom);
+        diamond.actOnPlayers(bob, tom);
 
         verify(tom, times(1)).addStateAttack(any(FireStateAttack.class));
     }
@@ -39,7 +48,7 @@ public class FireDiamondTest {
         whenNew(Random.class).withNoArguments().thenReturn(random);
 
         FireDiamond diamond = new FireDiamond();
-        diamond.actOnReceiver(tom);
+        diamond.actOnPlayers(bob, tom);
 
         verify(tom, never()).addStateAttack(any(FireStateAttack.class));
     }

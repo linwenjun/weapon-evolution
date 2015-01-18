@@ -28,6 +28,6 @@ public class DiamondEffectHandler extends GameHandler {
             return;
         }
 
-        diamond.actOnReceiver(receiver);
+        diamond.actOnPlayers(provider, receiver);
     }
 }

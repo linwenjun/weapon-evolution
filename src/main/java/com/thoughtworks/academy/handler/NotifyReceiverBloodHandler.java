@@ -20,7 +20,7 @@ public class NotifyReceiverBloodHandler extends GameHandler {
         info.put("name", receiver.getName());
         info.put("blood", "" + receiver.getBlood());
 
-        if(provider.isLive() && !provider.isLocked()) {
+        if(!provider.isDead() && !provider.isLocked()) {
             Publisher.getInstance().notifyListeners(new GameMessage("updateBlood", info));
         }
 
