@@ -16,6 +16,7 @@ public class Speaker implements IListener {
             templateMap.put("beenAttack", "{{name}}受到了{{hurt}}点伤害,");
             templateMap.put("attackWithFire", "{{receiver}}受到{{hurt}}点火焰伤害,{{receiver}}剩余生命：{{blood}}\n");
             templateMap.put("beenAttackByFire", "{{receiver}}着火了,");
+            templateMap.put("beenAttackByFreeze", "{{receiver}}冻僵了,");
 
             String type = message.getType();
             Map info = message.getInfo();

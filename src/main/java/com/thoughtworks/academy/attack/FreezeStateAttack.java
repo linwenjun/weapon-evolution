@@ -14,6 +14,11 @@ public class FreezeStateAttack extends StateAttack {
     }
 
     @Override
+    public String getType() {
+        return "Freeze";
+    }
+
+    @Override
     public StateAttack update(StateAttack stateAttack) {
         limitCount += limitCount;
         return this;

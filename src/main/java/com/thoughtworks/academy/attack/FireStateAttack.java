@@ -13,7 +13,7 @@ public class FireStateAttack extends StateAttack {
     private int TURN_COUNT = 3;
     private int hurtValue = 5;
     private List<Integer> multipleList = new ArrayList<Integer>();
-    protected String type = "Fire";
+    private String type = "Fire";
 
     public FireStateAttack() {
         for(int i=0; i< TURN_COUNT; i++) {
@@ -42,6 +42,11 @@ public class FireStateAttack extends StateAttack {
     }
 
 
+    @Override
+    public String getType() {
+        return type;
+    }
+
     public StateAttack update(StateAttack stateAttack) {
         List<Integer> result = new  ArrayList<Integer>();
         for(int i=0; i<multipleList.size(); i++) {
@@ -55,9 +60,5 @@ public class FireStateAttack extends StateAttack {
         multipleList = result;
 
         return this;
-    }
-
-    public String getType() {
-        return type;
     }
 }
