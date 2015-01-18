@@ -1,11 +1,15 @@
 package com.thoughtworks.academy.equipment;
 
-import com.thoughtworks.academy.Player;
-
 public class RageDiamond extends AbstractDiamond {
 
     @Override
-    protected void actOnReceiver(Player receiver) {
+    protected void actOnProvider() {
+        provider.consumeEnergy();
+    }
 
+    @Override
+    protected void actOnReceiver() {
+        int hurtValue = 3 * (provider.getAttack() - receiver.getDefense());
+        receiver.beenAttack(hurtValue);
     }
 }
