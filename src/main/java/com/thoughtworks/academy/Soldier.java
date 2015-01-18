@@ -1,5 +1,7 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.equipment.Weapon;
+
 public class Soldier extends Player {
     private Weapon weapon;
 

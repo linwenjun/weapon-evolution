@@ -1,15 +1,10 @@
-package com.thoughtworks.academy;
+package com.thoughtworks.academy.equipment;
 
 public class Weapon {
 
     private final int attackValue;
     private String name;
     private IAttack extraAttack;
-    private double fireExtraAttackRate = 0.25;
-
-    public Weapon(String name) {
-        this(name, 10);
-    }
 
     public Weapon(String name, int attackVal) {
         this.name = name;
@@ -26,5 +21,9 @@ public class Weapon {
 
     public int getAttackValue() {
         return attackValue;
+    }
+
+    public IAttack getExtraAttack() {
+        return extraAttack;
     }
 }

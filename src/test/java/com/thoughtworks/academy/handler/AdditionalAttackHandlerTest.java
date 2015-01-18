@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.attachment.FireStateAttack;
+import com.thoughtworks.academy.attack.FireStateAttack;
 import com.thoughtworks.academy.Player;
 import org.junit.Test;
 

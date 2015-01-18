@@ -1,5 +1,6 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.equipment.Weapon;
 import org.junit.After;
 import org.junit.Test;
 
@@ -20,11 +21,13 @@ public class PlayerTest {
     @Test
     public void testBasicFunctionOfPlayer() throws Exception {
         Player tom = new Player("tom", 100, 25);
+        tom.setDefense(10);
 
         assertThat(tom.getName(), is("tom"));
         assertThat(tom.getCareer(), is("普通人"));
         assertThat(tom.getBlood(), is(100));
         assertThat(tom.getAttack(), is(25));
+        assertThat(tom.getDefense(), is(0));
         assertThat(tom.getWeapon(), is(nullValue()));
     }
 

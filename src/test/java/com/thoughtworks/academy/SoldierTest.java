@@ -1,5 +1,6 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.equipment.Weapon;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
