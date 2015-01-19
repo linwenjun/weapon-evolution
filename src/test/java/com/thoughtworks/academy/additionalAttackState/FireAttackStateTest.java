@@ -1,4 +1,4 @@
-package com.thoughtworks.academy.attack;
+package com.thoughtworks.academy.additionalAttackState;
 
 import com.thoughtworks.academy.GameMessage;
 import com.thoughtworks.academy.IListener;
@@ -12,7 +12,7 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
-public class FireStateAttackTest {
+public class FireAttackStateTest {
 
     @Before
     public void setUp() throws Exception {
@@ -21,14 +21,14 @@ public class FireStateAttackTest {
 
     @Test
     public void testNewFireStateAttack() throws Exception {
-        StateAttack fireStateAttack = new FireStateAttack();
+        StateAttack fireStateAttack = new FireAttackState();
         assertThat(fireStateAttack.getType(), is("Fire"));
     }
 
     @Test
     public void testFireStateAttack() throws Exception {
 
-        StateAttack fireStateAttack = new FireStateAttack();
+        StateAttack fireStateAttack = new FireAttackState();
 
 
         Player tom = new Player("tom");
@@ -48,14 +48,14 @@ public class FireStateAttackTest {
     @Test
     public void testMultipleFireStateAttack() throws Exception {
 
-        FireStateAttack fireStateAttack = new FireStateAttack();
+        FireAttackState fireAttackState = new FireAttackState();
         Player tom = new Player("tom");
-        tom.addStateAttack(fireStateAttack);
+        tom.addStateAttack(fireAttackState);
 
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(95));
 
-        fireStateAttack.update(new FireStateAttack());
+        fireAttackState.update(new FireAttackState());
         tom.releaseStateAttack();
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(75));
@@ -71,7 +71,7 @@ public class FireStateAttackTest {
     public void testPublishGameMessage() throws Exception {
         IListener listener = mock(IListener.class);
         Player tom = mock(Player.class);
-        StateAttack fireStateAttack = new FireStateAttack();
+        StateAttack fireStateAttack = new FireAttackState();
 
         Publisher.getInstance().addListener(listener);
         fireStateAttack.actOnReceiver(tom);

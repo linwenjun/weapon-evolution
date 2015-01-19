@@ -1,4 +1,4 @@
-package com.thoughtworks.academy.attack;
+package com.thoughtworks.academy.additionalAttackState;
 
 import com.thoughtworks.academy.equipment.IAttack;
 

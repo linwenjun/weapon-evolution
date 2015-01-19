@@ -1,6 +1,6 @@
 package com.thoughtworks.academy;
 
-import com.thoughtworks.academy.attack.StateAttack;
+import com.thoughtworks.academy.additionalAttackState.StateAttack;
 import com.thoughtworks.academy.equipment.Weapon;
 
 import java.util.HashMap;

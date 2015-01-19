@@ -1,7 +1,7 @@
 package com.thoughtworks.academy.equipment;
 
 import com.thoughtworks.academy.Player;
-import com.thoughtworks.academy.attack.FreezeStateAttack;
+import com.thoughtworks.academy.additionalAttackState.FreezeStateAttack;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,4 +1,4 @@
-package com.thoughtworks.academy.attack;
+package com.thoughtworks.academy.additionalAttackState;
 
 import com.thoughtworks.academy.GameMessage;
 import com.thoughtworks.academy.Player;
@@ -9,14 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FireStateAttack extends StateAttack {
+public class FireAttackState extends StateAttack {
     private int TURN_COUNT = 3;
     private int hurtValue = 5;
     private List<Integer> multipleList = new ArrayList<Integer>();
     private String type = "Fire";
 
-    public FireStateAttack() {
-        for(int i=0; i< TURN_COUNT; i++) {
+    public FireAttackState() {
+        for (int i = 0; i < TURN_COUNT; i++) {
             multipleList.add(1);
         }
     }
@@ -28,7 +28,7 @@ public class FireStateAttack extends StateAttack {
         receiver.beenAttack(hurtVal);
 
         multipleList.remove(0);
-        if(multipleList.size() == 0) {
+        if (multipleList.size() == 0) {
             receiver.addStateAttack(null);
         }
 
@@ -48,12 +48,12 @@ public class FireStateAttack extends StateAttack {
     }
 
     public StateAttack update(StateAttack stateAttack) {
-        List<Integer> result = new  ArrayList<Integer>();
-        for(int i=0; i<multipleList.size(); i++) {
+        List<Integer> result = new ArrayList<Integer>();
+        for (int i = 0; i < multipleList.size(); i++) {
             result.add(multipleList.get(i) + 1);
-        };
+        }
 
-        for(int i=multipleList.size(); i<3; i++) {
+        for (int i = multipleList.size(); i < 3; i++) {
             result.add(1);
         }
 
