@@ -21,18 +21,18 @@ public class FireAttackStateTest {
 
     @Test
     public void testNewFireStateAttack() throws Exception {
-        StateAttack fireStateAttack = new FireAttackState();
-        assertThat(fireStateAttack.getType(), is("Fire"));
+        AdditionalAttackState fireAdditionalAttackState = new FireAttackAdditionalState();
+        assertThat(fireAdditionalAttackState.getType(), is("Fire"));
     }
 
     @Test
     public void testFireStateAttack() throws Exception {
 
-        StateAttack fireStateAttack = new FireAttackState();
+        AdditionalAttackState fireAdditionalAttackState = new FireAttackAdditionalState();
 
 
         Player tom = new Player("tom");
-        tom.addStateAttack(fireStateAttack);
+        tom.addStateAttack(fireAdditionalAttackState);
 
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(95));
@@ -48,14 +48,14 @@ public class FireAttackStateTest {
     @Test
     public void testMultipleFireStateAttack() throws Exception {
 
-        FireAttackState fireAttackState = new FireAttackState();
+        FireAttackAdditionalState fireAttackState = new FireAttackAdditionalState();
         Player tom = new Player("tom");
         tom.addStateAttack(fireAttackState);
 
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(95));
 
-        fireAttackState.update(new FireAttackState());
+        fireAttackState.update(new FireAttackAdditionalState());
         tom.releaseStateAttack();
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(75));
@@ -71,10 +71,10 @@ public class FireAttackStateTest {
     public void testPublishGameMessage() throws Exception {
         IListener listener = mock(IListener.class);
         Player tom = mock(Player.class);
-        StateAttack fireStateAttack = new FireAttackState();
+        AdditionalAttackState fireAdditionalAttackState = new FireAttackAdditionalState();
 
         Publisher.getInstance().addListener(listener);
-        fireStateAttack.actOnReceiver(tom);
+        fireAdditionalAttackState.actOnReceiver(tom);
         verify(listener, times(1)).update(any(GameMessage.class));
     }
 }

@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.mockito.Mockito.*;
 
 
-public class StateAttackHandlerTest {
+public class AdditionalAttackStateHandlerTest {
 
     StateAttackHandler stateAttackHandler;
 

@@ -1,6 +1,6 @@
 package com.thoughtworks.academy;
 
-import com.thoughtworks.academy.additionalAttackState.StateAttack;
+import com.thoughtworks.academy.additionalAttackState.AdditionalAttackState;
 import com.thoughtworks.academy.equipment.Weapon;
 import org.junit.After;
 import org.junit.Before;
@@ -111,21 +111,21 @@ public class PlayerTest {
 
     @Test
     public void testAddStateAttack() throws Exception {
-        StateAttack stateAttack = mock(StateAttack.class);
-        when(stateAttack.getType()).thenReturn("Fire");
+        AdditionalAttackState additionalAttackState = mock(AdditionalAttackState.class);
+        when(additionalAttackState.getType()).thenReturn("Fire");
         whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
 
-        tom.addStateAttack(stateAttack);
+        tom.addStateAttack(additionalAttackState);
         verifyNew(GameMessage.class).withArguments(eq("beenAttackByFire"), any(Map.class));
     }
 
     @Test
     public void testAddStateFreezeAttack() throws Exception {
-        StateAttack stateAttack = mock(StateAttack.class);
-        when(stateAttack.getType()).thenReturn("Freeze");
+        AdditionalAttackState additionalAttackState = mock(AdditionalAttackState.class);
+        when(additionalAttackState.getType()).thenReturn("Freeze");
         whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
 
-        tom.addStateAttack(stateAttack);
+        tom.addStateAttack(additionalAttackState);
         verifyNew(GameMessage.class).withArguments(eq("beenAttackByFreeze"), any(Map.class));
     }
 

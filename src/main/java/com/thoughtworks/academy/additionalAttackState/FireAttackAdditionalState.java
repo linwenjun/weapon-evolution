@@ -9,13 +9,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FireAttackState extends StateAttack {
+public class FireAttackAdditionalState extends AdditionalAttackState {
     private int TURN_COUNT = 3;
     private int hurtValue = 5;
     private List<Integer> multipleList = new ArrayList<Integer>();
     private String type = "Fire";
 
-    public FireAttackState() {
+    public FireAttackAdditionalState() {
         for (int i = 0; i < TURN_COUNT; i++) {
             multipleList.add(1);
         }
@@ -47,7 +47,7 @@ public class FireAttackState extends StateAttack {
         return type;
     }
 
-    public StateAttack update(StateAttack stateAttack) {
+    public AdditionalAttackState update(AdditionalAttackState additionalAttackState) {
         List<Integer> result = new ArrayList<Integer>();
         for (int i = 0; i < multipleList.size(); i++) {
             result.add(multipleList.get(i) + 1);

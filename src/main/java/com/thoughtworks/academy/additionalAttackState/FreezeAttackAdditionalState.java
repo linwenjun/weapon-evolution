@@ -7,12 +7,12 @@ import com.thoughtworks.academy.Publisher;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FreezeStateAttack extends StateAttack {
+public class FreezeAttackAdditionalState extends AdditionalAttackState {
     private int fightCount;
     private int limitCount;
     private int count;
 
-    public FreezeStateAttack() {
+    public FreezeAttackAdditionalState() {
         count = 0;
         fightCount = 0;
         limitCount = 3;
@@ -24,7 +24,7 @@ public class FreezeStateAttack extends StateAttack {
     }
 
     @Override
-    public StateAttack update(StateAttack stateAttack) {
+    public AdditionalAttackState update(AdditionalAttackState additionalAttackState) {
         limitCount += limitCount;
         return this;
     }

@@ -1,6 +1,6 @@
 package com.thoughtworks.academy;
 
-import com.thoughtworks.academy.additionalAttackState.StateAttack;
+import com.thoughtworks.academy.additionalAttackState.AdditionalAttackState;
 import com.thoughtworks.academy.equipment.Weapon;
 
 import java.util.HashMap;
@@ -12,7 +12,7 @@ public class Player {
     private String name;
     private int blood;
     private int attack;
-    private StateAttack stateAttack;
+    private AdditionalAttackState additionalAttackState;
     protected Weapon weapon;
     private boolean locked;
     private Boolean energy;
@@ -64,26 +64,26 @@ public class Player {
 
 
     public void releaseStateAttack() {
-        if(null == stateAttack) return;
+        if(null == additionalAttackState) return;
 
-        stateAttack.actOnReceiver(this);
+        additionalAttackState.actOnReceiver(this);
     }
 
-    public void addStateAttack(StateAttack stateAttack) {
+    public void addStateAttack(AdditionalAttackState additionalAttackState) {
 
-        if(null != stateAttack) {
-            String type = stateAttack.getType();
+        if(null != additionalAttackState) {
+            String type = additionalAttackState.getType();
             Map<String, String> info = new HashMap<String, String>();
             info.put("receiver", name);
             Publisher.getInstance().notifyListeners(new GameMessage("beenAttackBy" + type, info));
         }
 
-        if(null == this.stateAttack) {
-            this.stateAttack = stateAttack;
-        } else if(null != stateAttack) {
-            this.stateAttack = this.stateAttack.update(stateAttack);
+        if(null == this.additionalAttackState) {
+            this.additionalAttackState = additionalAttackState;
+        } else if(null != additionalAttackState) {
+            this.additionalAttackState = this.additionalAttackState.update(additionalAttackState);
         } else {
-            this.stateAttack = null;
+            this.additionalAttackState = null;
         }
     }
 

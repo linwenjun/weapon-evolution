@@ -15,13 +15,13 @@ import static org.powermock.api.mockito.PowerMockito.verifyNew;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(FreezeStateAttack.class)
-public class FreezeStateAttackTest {
-    FreezeStateAttack freezeStateAttack;
+@PrepareForTest(FreezeAttackAdditionalState.class)
+public class FreezeAttackStateTest {
+    FreezeAttackAdditionalState freezeAttackState;
     @Before
     public void setUp() throws Exception {
 
-        freezeStateAttack = new FreezeStateAttack();
+        freezeAttackState = new FreezeAttackAdditionalState();
     }
 
     @Test
@@ -35,24 +35,24 @@ public class FreezeStateAttackTest {
         Player tom = mock(Player.class);
         whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
 
-        freezeStateAttack.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
         verify(tom, times(1)).lock();
-        freezeStateAttack.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
         verify(tom, times(1)).lock();
-        freezeStateAttack.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
         verify(tom, times(2)).lock();
 
-        freezeStateAttack.actOnReceiver(tom);
-        freezeStateAttack.actOnReceiver(tom);
-        freezeStateAttack.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
 
         verify(tom, times(3)).lock();
         verifyNew(GameMessage.class, times(3)).withArguments(eq("attackWithFreeze"), any(Map.class));
         verify(tom, times(1)).addStateAttack(null);
 
-        freezeStateAttack.actOnReceiver(tom);
-        freezeStateAttack.actOnReceiver(tom);
-        freezeStateAttack.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
+        freezeAttackState.actOnReceiver(tom);
 
         verify(tom, times(3)).lock();
         verifyNew(GameMessage.class, times(3)).withArguments(eq("attackWithFreeze"), any(Map.class));

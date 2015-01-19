@@ -1,7 +1,7 @@
 package com.thoughtworks.academy.equipment;
 
 import com.thoughtworks.academy.Player;
-import com.thoughtworks.academy.additionalAttackState.FireAttackState;
+import com.thoughtworks.academy.additionalAttackState.FireAttackAdditionalState;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +29,6 @@ public class FireDiamondTest {
         FireDiamond diamond = new FireDiamond();
         diamond.actOnPlayers(bob, tom);
 
-        verify(tom, times(1)).addStateAttack(any(FireAttackState.class));
+        verify(tom, times(1)).addStateAttack(any(FireAttackAdditionalState.class));
     }
 }

@@ -1,12 +1,12 @@
 package com.thoughtworks.academy.equipment;
 
-import com.thoughtworks.academy.additionalAttackState.FreezeStateAttack;
+import com.thoughtworks.academy.additionalAttackState.FreezeAttackAdditionalState;
 
 public class FreezeDiamond extends AbstractDiamond {
 
     @Override
     protected void actOnReceiver() {
-        receiver.addStateAttack(new FreezeStateAttack());
+        receiver.addStateAttack(new FreezeAttackAdditionalState());
     }
 
     @Override
