@@ -13,7 +13,7 @@ public class Player {
     private int blood;
     private int attack;
     private StateAttack stateAttack;
-    private Weapon weapon;
+    protected Weapon weapon;
     private boolean locked;
     private Boolean energy;
 
@@ -87,16 +87,8 @@ public class Player {
         }
     }
 
-    public StateAttack getStateAttack() {
-        return stateAttack;
-    }
-
     public void setWeapon(Weapon weapon) {
         throw new RuntimeException();
-    }
-
-    public boolean isLive() {
-        return blood > 0;
     }
 
     public boolean isDead() {
@@ -111,9 +103,8 @@ public class Player {
         this.locked = true;
     }
 
-
     public void unlock() {
-        this.locked = false;
+        locked = false;
     }
 
     public Boolean hasEnergy() {
@@ -126,5 +117,17 @@ public class Player {
 
     public void giveEnergy() {
         energy = true;
+    }
+
+    public Boolean isExhausted() {
+        return (!energy || locked || blood <= 0);
+    }
+
+    public void restore() {
+        energy = true;
+        locked = false;
+        if(null != weapon) {
+            weapon.restore();
+        }
     }
 }

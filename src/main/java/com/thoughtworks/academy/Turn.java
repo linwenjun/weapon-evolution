@@ -11,6 +11,7 @@ public class Turn {
 
     public void process(Player provider, Player receiver) {
         handler.actOn(provider, receiver);
-        provider.unlock();
+
+        provider.restore();
     }
 }

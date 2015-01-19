@@ -14,7 +14,7 @@ public class PhysicalAttackHandler extends GameHandler {
     }
 
     protected void actOnPlayers(Player provider, Player receiver) {
-        if (provider.isDead() || receiver.isDead() || provider.isLocked()) {
+        if (provider.isExhausted() || receiver.isDead()) {
             return;
         }
 
@@ -24,11 +24,11 @@ public class PhysicalAttackHandler extends GameHandler {
             hurtValue += provider.getWeapon().getAttackValue();
         }
 
-        updateMessage(provider, receiver);
+        updateMessage(provider, receiver, hurtValue);
         receiver.beenAttack(hurtValue);
     }
 
-    private void updateMessage(Player provider, Player receiver) {
+    private void updateMessage(Player provider, Player receiver, int hurtValue) {
         GameMessage gameMessage;
 
         Map<String, String> info = new HashMap<String, String>();
@@ -36,6 +36,7 @@ public class PhysicalAttackHandler extends GameHandler {
         info.put("provider", "" + provider.getName());
         info.put("receiverCareer", "" + receiver.getCareer());
         info.put("receiver", "" + receiver.getName());
+        info.put("hurtValue", "" + hurtValue);
 
         if (null != provider.getWeapon()) {
             info.put("weapon", provider.getWeapon().getName());

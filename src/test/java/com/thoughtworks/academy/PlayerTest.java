@@ -128,4 +128,22 @@ public class PlayerTest {
         tom.addStateAttack(stateAttack);
         verifyNew(GameMessage.class).withArguments(eq("beenAttackByFreeze"), any(Map.class));
     }
+
+    @Test
+    public void testIsExhaustedWhenConsumeEnergy() throws Exception {
+
+        assertThat(tom.isExhausted(), is(false));
+        tom.consumeEnergy();
+        assertThat(tom.isExhausted(), is(true));
+        tom.giveEnergy();
+
+        assertThat(tom.isExhausted(), is(false));
+        tom.lock();
+        assertThat(tom.isExhausted(), is(true));
+        tom.unlock();
+        assertThat(tom.isExhausted(), is(false));
+
+        tom.beenAttack(100);
+        assertThat(tom.isExhausted(), is(true));
+    }
 }

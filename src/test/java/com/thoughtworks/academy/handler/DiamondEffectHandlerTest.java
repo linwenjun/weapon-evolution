@@ -20,7 +20,7 @@ public class DiamondEffectHandlerTest {
         AbstractDiamond diamond = mock(FireDiamond.class);
 
         when(bob.getWeapon()).thenReturn(sword);
-        when(sword.getDiamond()).thenReturn(diamond);
+        when(sword.getEffectiveDiamond()).thenReturn(diamond);
 
         handler.actOnPlayers(bob, tom);
 

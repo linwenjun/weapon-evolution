@@ -51,21 +51,10 @@ public class SpeakerTest {
         info.put("receiver", "bob");
         info.put("providerCareer", "普通人");
         info.put("receiverCareer", "普通人");
+        info.put("hurtValue", "30");
         speaker.update(new GameMessage("attack", info));
 
-        assertThat(outContent.toString(), is("普通人tom攻击了普通人bob,"));
-    }
-
-    @Test
-    public void testSayBeenAttack() throws Exception {
-
-        IListener speaker = new Speaker();
-        Map<String, String> info = new HashMap<String, String>();
-        info.put("name", "tom");
-        info.put("hurt", "100");
-        speaker.update(new GameMessage("beenAttack", info));
-
-        assertThat(outContent.toString(), is("tom受到了100点伤害,"));
+        assertThat(outContent.toString(), is("普通人tom攻击了普通人bob,bob受到了30点伤害,"));
     }
 
     @Test

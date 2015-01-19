@@ -26,10 +26,8 @@ public class TurnTest {
         Soldier jack = mock(Soldier.class);
         GameHandler gameHandler = mock(GameHandler.class);
 
-
         Turn turn = new Turn(gameHandler);
         turn.process(tom, jack);
-        verify(tom).unlock();
-
+        verify(tom).restore();
     }
 }

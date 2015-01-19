@@ -3,7 +3,6 @@ package com.thoughtworks.academy;
 import com.thoughtworks.academy.equipment.Weapon;
 
 public class Soldier extends Player {
-    private Weapon weapon;
 
     public Soldier(String name, int blood, int attack) {
         super(name, blood, attack);
@@ -31,5 +30,4 @@ public class Soldier extends Player {
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
-
 }

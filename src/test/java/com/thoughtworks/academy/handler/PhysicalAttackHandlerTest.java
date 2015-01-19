@@ -62,7 +62,7 @@ public class PhysicalAttackHandlerTest {
     @Test
     public void testHandleWillNotExcuteWillProviderWasLocked() throws Exception {
 
-        when(tom.isLocked()).thenReturn(true);
+        when(tom.isExhausted()).thenReturn(true);
 
         physicalAttackHandler.actOnPlayers(tom, bob);
 

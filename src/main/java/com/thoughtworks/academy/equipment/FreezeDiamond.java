@@ -8,4 +8,9 @@ public class FreezeDiamond extends AbstractDiamond {
     protected void actOnReceiver() {
         receiver.addStateAttack(new FreezeStateAttack());
     }
+
+    @Override
+    public String getType() {
+        return "Freeze";
+    }
 }
