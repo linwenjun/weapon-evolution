@@ -1,0 +1,7 @@
+.gradle/
+build/
+gradle/
+out/
+weapon-evolution.iml
+weapon-evolution.ipr
+weapon-evolution.iws
