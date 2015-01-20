@@ -1,6 +1,7 @@
 package com.thoughtworks.academy;
 
 import com.thoughtworks.academy.additionalAttackState.AdditionalAttackState;
+import com.thoughtworks.academy.additionalAttackState.BlankAttackState;
 import com.thoughtworks.academy.equipment.Weapon;
 import org.junit.After;
 import org.junit.Before;
@@ -39,6 +40,9 @@ public class PlayerTest {
 
     @Test
     public void testBasicFunctionOfPlayer() throws Exception {
+        BlankAttackState blankAttackState = mock(BlankAttackState.class);
+        whenNew(BlankAttackState.class).withNoArguments().thenReturn(blankAttackState);
+
         Player tom = new Player("tom", 100, 25);
         tom.setDefense(10);
 
@@ -48,6 +52,7 @@ public class PlayerTest {
         assertThat(tom.getAttack(), is(25));
         assertThat(tom.getDefense(), is(0));
         assertThat(tom.getWeapon(), is(nullValue()));
+        assertThat(tom.getAttackState(), is((AdditionalAttackState)blankAttackState));
     }
 
     @Test

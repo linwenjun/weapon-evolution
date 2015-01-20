@@ -29,7 +29,7 @@ public class FireAttackAdditionalState extends AdditionalAttackState {
 
         multipleList.remove(0);
         if (multipleList.size() == 0) {
-            receiver.addStateAttack(null);
+            receiver.addStateAttack(new BlankAttackState());
         }
 
         Map<String, String> info = new HashMap<String, String>();

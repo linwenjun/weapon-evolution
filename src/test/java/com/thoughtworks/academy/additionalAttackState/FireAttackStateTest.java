@@ -55,7 +55,7 @@ public class FireAttackStateTest {
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(95));
 
-        fireAttackState.update(new FireAttackAdditionalState());
+        fireAttackState.turn(new FireAttackAdditionalState());
         tom.releaseStateAttack();
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(75));
@@ -76,5 +76,10 @@ public class FireAttackStateTest {
         Publisher.getInstance().addListener(listener);
         fireAdditionalAttackState.actOnReceiver(tom);
         verify(listener, times(1)).update(any(GameMessage.class));
+    }
+
+    @Test
+    public void testTurn() throws Exception {
+
     }
 }

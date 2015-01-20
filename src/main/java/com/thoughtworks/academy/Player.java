@@ -1,6 +1,7 @@
 package com.thoughtworks.academy;
 
 import com.thoughtworks.academy.additionalAttackState.AdditionalAttackState;
+import com.thoughtworks.academy.additionalAttackState.BlankAttackState;
 import com.thoughtworks.academy.equipment.Weapon;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class Player {
     private String name;
     private int blood;
     private int attack;
-    private AdditionalAttackState additionalAttackState;
+    private AdditionalAttackState additionalAttackState = new BlankAttackState();;
     protected Weapon weapon;
     private boolean locked;
     private Boolean energy;
@@ -64,27 +65,17 @@ public class Player {
 
 
     public void releaseStateAttack() {
-        if(null == additionalAttackState) return;
-
         additionalAttackState.actOnReceiver(this);
     }
 
-    public void addStateAttack(AdditionalAttackState additionalAttackState) {
+    public void addStateAttack(AdditionalAttackState newState) {
 
-        if(null != additionalAttackState) {
-            String type = additionalAttackState.getType();
-            Map<String, String> info = new HashMap<String, String>();
-            info.put("receiver", name);
-            Publisher.getInstance().notifyListeners(new GameMessage("beenAttackBy" + type, info));
-        }
+        String type = newState.getType();
+        Map<String, String> info = new HashMap<String, String>();
+        info.put("receiver", name);
+        Publisher.getInstance().notifyListeners(new GameMessage("beenAttackBy" + type, info));
 
-        if(null == this.additionalAttackState) {
-            this.additionalAttackState = additionalAttackState;
-        } else if(null != additionalAttackState) {
-            this.additionalAttackState = this.additionalAttackState.update(additionalAttackState);
-        } else {
-            this.additionalAttackState = null;
-        }
+        additionalAttackState = additionalAttackState.turn(newState);
     }
 
     public void setWeapon(Weapon weapon) {
@@ -129,5 +120,9 @@ public class Player {
         if(null != weapon) {
             weapon.restore();
         }
+    }
+
+    public AdditionalAttackState getAttackState() {
+        return additionalAttackState;
     }
 }
