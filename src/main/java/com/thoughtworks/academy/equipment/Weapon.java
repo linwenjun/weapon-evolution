@@ -6,15 +6,22 @@ import java.util.Random;
 
 public class Weapon {
     private static final double FIGHT_RATE = 0.25;
+    protected static final int LONG_SIZE = 3;
+    protected static final int MEDIUM_SIZE = 2;
+    protected static final int SHORT_SIZE = 1;
+
+
     private final int attackValue;
     private String name;
     private List<IDiamond> diamonds = new ArrayList<IDiamond>();
     private IDiamond effectiveDiamond;
     private boolean isEffectiveDiamondCreated = false;
+    protected int size;
 
     public Weapon(String name, int attackVal) {
         this.name = name;
         this.attackValue = attackVal;
+        size = MEDIUM_SIZE;
     }
 
     public String getName() {
@@ -30,9 +37,7 @@ public class Weapon {
     }
 
     public IDiamond getEffectiveDiamond() {
-        if(isEffectiveDiamondCreated) {
-            return effectiveDiamond;
-        }
+        if(isEffectiveDiamondCreated) return effectiveDiamond;
 
         Random random = new Random();
         IDiamond result = null;
@@ -54,6 +59,6 @@ public class Weapon {
     }
 
     public int getSize() {
-        return 2;
+        return this.size;
     }
 }
