@@ -27,16 +27,15 @@ public class WeaponTest {
 
     @Test
     public void testCreateWeapon() throws Exception {
-        AbstractDiamond diamond = new FireDiamond();
-
         assertThat(weapon.getName(), is("优质木棒"));
         assertThat(weapon.getAttackValue(), is(10));
+        assertThat(weapon.getSize(), is(2));
     }
 
     @Test
     public void testAttachDiamondMayBeReturnNull() throws Exception {
-        AbstractDiamond diamond1 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond2 = mock(AbstractDiamond.class);
+        IDiamond diamond1 = mock(IDiamond.class);
+        IDiamond diamond2 = mock(IDiamond.class);
 
         Random random = mock(Random.class);
         weapon.attachDiamond(diamond1);
@@ -59,8 +58,8 @@ public class WeaponTest {
 
     @Test
     public void testAttachDiamondMayBeReturnFirstDiamond() throws Exception {
-        AbstractDiamond diamond1 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond2 = mock(AbstractDiamond.class);
+        IDiamond diamond1 = mock(IDiamond.class);
+        IDiamond diamond2 = mock(IDiamond.class);
 
         Random random = mock(Random.class);
         weapon.attachDiamond(diamond1);
@@ -74,9 +73,9 @@ public class WeaponTest {
 
     @Test
     public void testAttachDiamondMayBeReturnThirdDiamond() throws Exception {
-        AbstractDiamond diamond1 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond2 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond3 = mock(AbstractDiamond.class);
+        IDiamond diamond1 = mock(IDiamond.class);
+        IDiamond diamond2 = mock(IDiamond.class);
+        IDiamond diamond3 = mock(IDiamond.class);
 
         Random random = mock(Random.class);
         weapon.attachDiamond(diamond1);
@@ -91,9 +90,9 @@ public class WeaponTest {
 
     @Test
     public void testGetEffectiveDiamondWillMaintainResult() throws Exception {
-        AbstractDiamond diamond1 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond2 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond3 = mock(AbstractDiamond.class);
+        IDiamond diamond1 = mock(IDiamond.class);
+        IDiamond diamond2 = mock(IDiamond.class);
+        IDiamond diamond3 = mock(IDiamond.class);
 
         Random random = mock(Random.class);
         weapon.attachDiamond(diamond1);
@@ -109,9 +108,9 @@ public class WeaponTest {
 
     @Test
     public void testGetEffectiveDiamondWillMaintainResultEvenIfResultIsNUll() throws Exception {
-        AbstractDiamond diamond1 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond2 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond3 = mock(AbstractDiamond.class);
+        IDiamond diamond1 = mock(IDiamond.class);
+        IDiamond diamond2 = mock(IDiamond.class);
+        IDiamond diamond3 = mock(IDiamond.class);
 
         Random random = mock(Random.class);
         weapon.attachDiamond(diamond1);
@@ -127,9 +126,9 @@ public class WeaponTest {
 
     @Test
     public void testGetEffectiveDiamondWillMaintainResultEvenIfResultIsNullUntilWeaponRestore() throws Exception {
-        AbstractDiamond diamond1 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond2 = mock(AbstractDiamond.class);
-        AbstractDiamond diamond3 = mock(AbstractDiamond.class);
+        IDiamond diamond1 = mock(IDiamond.class);
+        IDiamond diamond2 = mock(IDiamond.class);
+        IDiamond diamond3 = mock(IDiamond.class);
 
         Random random = mock(Random.class);
         weapon.attachDiamond(diamond1);

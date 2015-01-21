@@ -1,7 +1,7 @@
 package com.thoughtworks.academy.handler;
 
 import com.thoughtworks.academy.Player;
-import com.thoughtworks.academy.equipment.AbstractDiamond;
+import com.thoughtworks.academy.equipment.IDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
 
 public class RageAttackHandler  extends GameHandler{
@@ -18,7 +18,7 @@ public class RageAttackHandler  extends GameHandler{
 
         if(null == weapon) return;
 
-        AbstractDiamond diamond = weapon.getEffectiveDiamond();
+        IDiamond diamond = weapon.getEffectiveDiamond();
 
         if(null == diamond || "Rage" != diamond.getType()) return;
 

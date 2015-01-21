@@ -36,19 +36,15 @@ public class FreezeAttackStateTest {
         whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
 
         freezeAttackState.actOnReceiver(tom);
-        verify(tom, times(1)).lock();
         freezeAttackState.actOnReceiver(tom);
-        verify(tom, times(1)).lock();
         freezeAttackState.actOnReceiver(tom);
-        verify(tom, times(2)).lock();
-
         freezeAttackState.actOnReceiver(tom);
         freezeAttackState.actOnReceiver(tom);
         freezeAttackState.actOnReceiver(tom);
 
         verify(tom, times(3)).lock();
         verifyNew(GameMessage.class, times(3)).withArguments(eq("attackWithFreeze"), any(Map.class));
-        verify(tom, times(1)).addStateAttack(null);
+        verify(tom, times(1)).attachAttackState(any(BlankAttackState.class));
 
         freezeAttackState.actOnReceiver(tom);
         freezeAttackState.actOnReceiver(tom);

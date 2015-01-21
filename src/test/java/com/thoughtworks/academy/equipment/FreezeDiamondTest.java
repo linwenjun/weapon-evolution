@@ -30,6 +30,6 @@ public class FreezeDiamondTest {
     @Test
     public void testActOnReceiver() throws Exception {
         freezeDiamond.actOnPlayers(bob, tom);
-        verify(tom, times(1)).addStateAttack(any(FreezeAttackAdditionalState.class));
+        verify(tom, times(1)).attachAttackState(any(FreezeAttackAdditionalState.class));
     }
 }

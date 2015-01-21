@@ -49,7 +49,7 @@ public class FreezeAttackAdditionalState extends AdditionalAttackState {
         count++;
 
         if(fightCount >= limitCount) {
-            receiver.addStateAttack(new BlankAttackState());
+            receiver.attachAttackState(new BlankAttackState());
         }
     }
 }

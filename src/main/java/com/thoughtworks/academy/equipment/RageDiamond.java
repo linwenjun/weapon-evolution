@@ -6,7 +6,7 @@ import com.thoughtworks.academy.Publisher;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RageDiamond extends AbstractDiamond {
+public class RageDiamond extends IDiamond {
 
     @Override
     protected void actOnProvider() {

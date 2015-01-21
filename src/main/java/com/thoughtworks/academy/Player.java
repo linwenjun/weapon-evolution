@@ -68,7 +68,7 @@ public class Player {
         additionalAttackState.actOnReceiver(this);
     }
 
-    public void addStateAttack(AdditionalAttackState newState) {
+    public void attachAttackState(AdditionalAttackState newState) {
 
         String type = newState.getType();
         Map<String, String> info = new HashMap<String, String>();

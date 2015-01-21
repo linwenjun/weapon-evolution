@@ -32,7 +32,7 @@ public class FireAttackStateTest {
 
 
         Player tom = new Player("tom");
-        tom.addStateAttack(fireAdditionalAttackState);
+        tom.attachAttackState(fireAdditionalAttackState);
 
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(95));
@@ -50,7 +50,7 @@ public class FireAttackStateTest {
 
         FireAttackAdditionalState fireAttackState = new FireAttackAdditionalState();
         Player tom = new Player("tom");
-        tom.addStateAttack(fireAttackState);
+        tom.attachAttackState(fireAttackState);
 
         tom.releaseStateAttack();
         assertThat(tom.getBlood(), is(95));

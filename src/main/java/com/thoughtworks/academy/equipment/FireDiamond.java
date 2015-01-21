@@ -2,11 +2,11 @@ package com.thoughtworks.academy.equipment;
 
 import com.thoughtworks.academy.additionalAttackState.FireAttackAdditionalState;
 
-public class FireDiamond extends AbstractDiamond {
+public class FireDiamond extends IDiamond {
 
     @Override
     protected void actOnReceiver() {
-        receiver.addStateAttack(new FireAttackAdditionalState());
+        receiver.attachAttackState(new FireAttackAdditionalState());
     }
 
     @Override

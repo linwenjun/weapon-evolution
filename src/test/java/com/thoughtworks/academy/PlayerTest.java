@@ -120,7 +120,7 @@ public class PlayerTest {
         when(additionalAttackState.getType()).thenReturn("Fire");
         whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
 
-        tom.addStateAttack(additionalAttackState);
+        tom.attachAttackState(additionalAttackState);
         verifyNew(GameMessage.class).withArguments(eq("beenAttackByFire"), any(Map.class));
     }
 
@@ -130,7 +130,7 @@ public class PlayerTest {
         when(additionalAttackState.getType()).thenReturn("Freeze");
         whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
 
-        tom.addStateAttack(additionalAttackState);
+        tom.attachAttackState(additionalAttackState);
         verifyNew(GameMessage.class).withArguments(eq("beenAttackByFreeze"), any(Map.class));
     }
 

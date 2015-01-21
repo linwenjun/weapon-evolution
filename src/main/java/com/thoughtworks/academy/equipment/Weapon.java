@@ -8,8 +8,8 @@ public class Weapon {
     private static final double FIGHT_RATE = 0.25;
     private final int attackValue;
     private String name;
-    private List<AbstractDiamond> diamonds = new ArrayList<AbstractDiamond>();
-    private AbstractDiamond effectiveDiamond;
+    private List<IDiamond> diamonds = new ArrayList<IDiamond>();
+    private IDiamond effectiveDiamond;
     private boolean isEffectiveDiamondCreated = false;
 
     public Weapon(String name, int attackVal) {
@@ -25,23 +25,19 @@ public class Weapon {
         return attackValue;
     }
 
-    public void attachDiamond(AbstractDiamond diamond) {
+    public void attachDiamond(IDiamond diamond) {
         diamonds.add(diamond);
     }
 
-    public AbstractDiamond getDiamond() {
-        return diamonds.get(0);
-    }
-
-    public AbstractDiamond getEffectiveDiamond() {
+    public IDiamond getEffectiveDiamond() {
         if(isEffectiveDiamondCreated) {
             return effectiveDiamond;
         }
 
         Random random = new Random();
-        AbstractDiamond result = null;
+        IDiamond result = null;
 
-        for (AbstractDiamond diamond : diamonds) {
+        for (IDiamond diamond : diamonds) {
             if (random.nextDouble() < FIGHT_RATE) {
                 result = diamond;
                 break;
@@ -55,5 +51,9 @@ public class Weapon {
 
     public void restore() {
         isEffectiveDiamondCreated = false;
+    }
+
+    public int getSize() {
+        return 2;
     }
 }
