@@ -1,5 +1,6 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.player.Player;
 import com.thoughtworks.academy.handler.GameHandler;
 import com.thoughtworks.academy.handler.PhysicalAttackHandler;
 import org.junit.Test;

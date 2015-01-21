@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.equipment;
 
-import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.player.Player;
 
 public abstract class IDiamond {
     protected Player provider;

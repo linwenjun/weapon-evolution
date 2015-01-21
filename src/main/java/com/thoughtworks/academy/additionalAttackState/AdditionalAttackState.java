@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.additionalAttackState;
 
-import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.player.Player;
 
 public abstract class AdditionalAttackState {
 

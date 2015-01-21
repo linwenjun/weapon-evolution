@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.equipment;
 
-import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.player.Player;
 import com.thoughtworks.academy.additionalAttackState.FreezeAttackAdditionalState;
 import org.junit.Before;
 import org.junit.Test;

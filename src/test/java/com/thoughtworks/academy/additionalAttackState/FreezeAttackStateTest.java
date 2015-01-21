@@ -1,7 +1,7 @@
 package com.thoughtworks.academy.additionalAttackState;
 
 import com.thoughtworks.academy.GameMessage;
-import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.player.Player;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

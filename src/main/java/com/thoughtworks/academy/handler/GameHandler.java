@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.player.Player;
 
 public abstract class GameHandler {
     protected GameHandler successor;

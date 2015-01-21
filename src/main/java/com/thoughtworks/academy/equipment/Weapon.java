@@ -5,18 +5,19 @@ import java.util.List;
 import java.util.Random;
 
 public class Weapon {
+
+    public static final int LONG_SIZE = 3;
+    public static final int MEDIUM_SIZE = 2;
+    public static final int SHORT_SIZE = 1;
+
+    protected int size;
+
     private static final double FIGHT_RATE = 0.25;
-    protected static final int LONG_SIZE = 3;
-    protected static final int MEDIUM_SIZE = 2;
-    protected static final int SHORT_SIZE = 1;
-
-
     private final int attackValue;
     private String name;
     private List<IDiamond> diamonds = new ArrayList<IDiamond>();
     private IDiamond effectiveDiamond;
     private boolean isEffectiveDiamondCreated = false;
-    protected int size;
 
     public Weapon(String name, int attackVal) {
         this.name = name;

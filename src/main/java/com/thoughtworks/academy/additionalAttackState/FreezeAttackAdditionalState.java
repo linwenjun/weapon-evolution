@@ -1,7 +1,7 @@
 package com.thoughtworks.academy.additionalAttackState;
 
 import com.thoughtworks.academy.GameMessage;
-import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.player.Player;
 import com.thoughtworks.academy.Publisher;
 
 import java.util.HashMap;

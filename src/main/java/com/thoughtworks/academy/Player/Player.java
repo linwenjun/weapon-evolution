@@ -1,5 +1,7 @@
-package com.thoughtworks.academy;
+package com.thoughtworks.academy.player;
 
+import com.thoughtworks.academy.GameMessage;
+import com.thoughtworks.academy.Publisher;
 import com.thoughtworks.academy.additionalAttackState.AdditionalAttackState;
 import com.thoughtworks.academy.additionalAttackState.BlankAttackState;
 import com.thoughtworks.academy.equipment.Weapon;
@@ -8,6 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
+
+    protected final static String PLAYER = "普通人";
+    protected final static String SOLDIER = "战士";
+    protected final static String KNIGHT = "骑士";
+    protected final static String ASSASSIN = "刺客";
+
     protected int defense;
 
     private String name;
@@ -43,7 +51,7 @@ public class Player {
     }
 
     public String getCareer() {
-        return "普通人";
+        return PLAYER;
     }
 
     public int getDefense() {

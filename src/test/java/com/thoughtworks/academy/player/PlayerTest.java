@@ -1,8 +1,10 @@
-package com.thoughtworks.academy;
+package com.thoughtworks.academy.player;
 
+import com.thoughtworks.academy.GameMessage;
+import com.thoughtworks.academy.IListener;
+import com.thoughtworks.academy.Publisher;
 import com.thoughtworks.academy.additionalAttackState.AdditionalAttackState;
 import com.thoughtworks.academy.additionalAttackState.BlankAttackState;
-import com.thoughtworks.academy.equipment.Weapon;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -82,15 +84,6 @@ public class PlayerTest {
         verify(listener, never()).update(any(GameMessage.class));
     }
 
-    @Test
-    public void testPlayerWithWeapon() throws Exception {
-        Soldier tom = new Soldier("tom");
-        Weapon weapon = mock(Weapon.class);
-
-        tom.setWeapon(weapon);
-
-        assertThat(tom.getWeapon(), is(weapon));
-    }
 
     @Test
     public void testPlayerLock() throws Exception {

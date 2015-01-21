@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.Player;
+import com.thoughtworks.academy.player.Player;
 import com.thoughtworks.academy.equipment.Weapon;
 import org.junit.Before;
 import org.junit.Test;

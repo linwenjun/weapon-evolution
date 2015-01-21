@@ -1,5 +1,7 @@
 package com.thoughtworks.academy;
 
+import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.Soldier;
 import com.thoughtworks.academy.equipment.*;
 import com.thoughtworks.academy.handler.*;
 

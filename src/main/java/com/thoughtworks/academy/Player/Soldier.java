@@ -1,20 +1,20 @@
-package com.thoughtworks.academy;
+package com.thoughtworks.academy.player;
 
 import com.thoughtworks.academy.equipment.Weapon;
 
+import java.util.Arrays;
+
 public class Soldier extends Player {
+    protected int[] suitableWeaponSize = new int[]{Weapon.MEDIUM_SIZE};
+    protected int[] bestWeaponSize = new int[]{Weapon.MEDIUM_SIZE};
 
     public Soldier(String name, int blood, int attack) {
         super(name, blood, attack);
     }
 
-    public Soldier(String name) {
-        super(name);
-    }
-
     @Override
     public String getCareer() {
-        return "战士";
+        return SOLDIER;
     }
 
     @Override
@@ -28,6 +28,9 @@ public class Soldier extends Player {
     }
 
     public void setWeapon(Weapon weapon) {
+        if (0 > Arrays.binarySearch(suitableWeaponSize, weapon.getSize())) {
+            throw(new RuntimeException("Unsuitable Weapon Size"));
+        }
         this.weapon = weapon;
     }
 }
