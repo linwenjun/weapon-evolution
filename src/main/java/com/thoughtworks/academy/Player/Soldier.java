@@ -4,7 +4,7 @@ import com.thoughtworks.academy.equipment.Weapon;
 
 import java.util.Arrays;
 
-public class Soldier extends ProfessionalPlayer {
+public class Soldier extends Technologist {
     protected int[] suitableWeaponSize = new int[]{Weapon.MEDIUM_SIZE};
     protected int[] bestWeaponSize = new int[]{Weapon.MEDIUM_SIZE};
 
