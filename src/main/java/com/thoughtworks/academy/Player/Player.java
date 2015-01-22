@@ -24,7 +24,6 @@ public abstract class Player {
     protected Weapon weapon;
 
     private AdditionalAttackState additionalAttackState = new BlankAttackState();
-    ;
 
     public Player(String name, int blood, int attack) {
         this.name = name;
