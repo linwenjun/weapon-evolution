@@ -1,6 +1,6 @@
 package com.thoughtworks.academy;
 
-import com.thoughtworks.academy.player.OrdinaryPlayer;
+import com.thoughtworks.academy.player.Mortal;
 import com.thoughtworks.academy.player.Soldier;
 import com.thoughtworks.academy.handler.GameHandler;
 import com.thoughtworks.academy.handler.PhysicalAttackHandler;
@@ -12,7 +12,7 @@ public class TurnTest {
 
     @Test
     public void testTurn() throws Exception {
-        OrdinaryPlayer tom = mock(OrdinaryPlayer.class);
+        Mortal tom = mock(Mortal.class);
         Soldier jack = mock(Soldier.class);
         PhysicalAttackHandler physicalAttackHandler = mock(PhysicalAttackHandler.class);
 
@@ -24,7 +24,7 @@ public class TurnTest {
 
     @Test
     public void testProviderWillUnlockAfterTurn() throws Exception {
-        OrdinaryPlayer tom = mock(OrdinaryPlayer.class);
+        Mortal tom = mock(Mortal.class);
         Soldier jack = mock(Soldier.class);
         GameHandler gameHandler = mock(GameHandler.class);
 

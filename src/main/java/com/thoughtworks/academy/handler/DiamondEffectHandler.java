@@ -1,8 +1,9 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.player.OrdinaryPlayer;
+import com.thoughtworks.academy.player.Mortal;
 import com.thoughtworks.academy.equipment.IDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
+import com.thoughtworks.academy.player.Player;
 
 public class DiamondEffectHandler extends GameHandler {
 
@@ -11,7 +12,7 @@ public class DiamondEffectHandler extends GameHandler {
     }
 
     @Override
-    protected void actOnPlayers(OrdinaryPlayer provider, OrdinaryPlayer receiver) {
+    protected void actOnPlayers(Player provider, Player receiver) {
 
         Weapon weapon = provider.getWeapon();
 

@@ -1,7 +1,6 @@
 package com.thoughtworks.academy.additionalAttackState;
 
 import com.thoughtworks.academy.GameMessage;
-import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.Publisher;
 import com.thoughtworks.academy.player.Player;
 

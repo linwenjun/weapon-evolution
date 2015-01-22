@@ -1,8 +1,8 @@
 package com.thoughtworks.academy.handler;
 
 import com.thoughtworks.academy.GameMessage;
-import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.Publisher;
+import com.thoughtworks.academy.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ public class PhysicalAttackHandler extends GameHandler {
         super(successor);
     }
 
-    protected void actOnPlayers(OrdinaryPlayer provider, OrdinaryPlayer receiver) {
+    protected void actOnPlayers(Player provider, Player receiver) {
         if (provider.isExhausted() || receiver.isDead()) {
             return;
         }
@@ -28,7 +28,7 @@ public class PhysicalAttackHandler extends GameHandler {
         receiver.beenAttack(hurtValue);
     }
 
-    private void updateMessage(OrdinaryPlayer provider, OrdinaryPlayer receiver, int hurtValue) {
+    private void updateMessage(Player provider, Player receiver, int hurtValue) {
         GameMessage gameMessage;
 
         Map<String, String> info = new HashMap<String, String>();

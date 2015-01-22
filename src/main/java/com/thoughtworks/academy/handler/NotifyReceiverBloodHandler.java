@@ -1,8 +1,8 @@
 package com.thoughtworks.academy.handler;
 
 import com.thoughtworks.academy.GameMessage;
-import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.Publisher;
+import com.thoughtworks.academy.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ public class NotifyReceiverBloodHandler extends GameHandler {
     }
 
     @Override
-    protected void actOnPlayers(OrdinaryPlayer provider, OrdinaryPlayer receiver) {
+    protected void actOnPlayers(Player provider, Player receiver) {
 
         Map<String, String> info = new HashMap<String, String>();
         info.put("name", receiver.getName());

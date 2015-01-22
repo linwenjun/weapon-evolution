@@ -1,12 +1,12 @@
 package com.thoughtworks.academy.equipment;
 
-import com.thoughtworks.academy.player.OrdinaryPlayer;
+import com.thoughtworks.academy.player.Player;
 
 public abstract class IDiamond {
-    protected OrdinaryPlayer provider;
-    protected OrdinaryPlayer receiver;
+    protected Player provider;
+    protected Player receiver;
 
-    public final void actOnPlayers(OrdinaryPlayer provider, OrdinaryPlayer receiver) {
+    public final void actOnPlayers(Player provider, Player receiver) {
         this.provider = provider;
         this.receiver = receiver;
         actOnProvider();

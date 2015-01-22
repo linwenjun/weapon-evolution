@@ -1,6 +1,7 @@
 package com.thoughtworks.academy;
 
-import com.thoughtworks.academy.player.OrdinaryPlayer;
+import com.thoughtworks.academy.player.Mortal;
+import com.thoughtworks.academy.player.Player;
 import com.thoughtworks.academy.player.Soldier;
 import com.thoughtworks.academy.equipment.*;
 import com.thoughtworks.academy.handler.*;
@@ -8,11 +9,11 @@ import com.thoughtworks.academy.handler.*;
 public class Round implements IListener {
     private Turn turn;
     private boolean isProcess = true;
-    private OrdinaryPlayer p1;
-    private OrdinaryPlayer p2;
+    private Player p1;
+    private Player p2;
     private int maxCount = 100;
 
-    public Round(OrdinaryPlayer p1, OrdinaryPlayer p2) {
+    public Round(Player p1, Player p2) {
         this.p1 = p1;
         this.p2 = p2;
 
@@ -40,7 +41,7 @@ public class Round implements IListener {
     }
 
     private void swap() {
-        OrdinaryPlayer temp = p1;
+        Player temp = p1;
         p1 = p2;
         p2 = temp;
     }
@@ -54,7 +55,7 @@ public class Round implements IListener {
 
     public static void main(String[] args) {
         Soldier chang = new Soldier("张三", 200, 12);
-        OrdinaryPlayer lee = new OrdinaryPlayer("李四", 230, 14);
+        Mortal lee = new Mortal("李四", 230, 14);
         Weapon sword = new Weapon("金蛇剑", 10);
 
         sword.attachDiamond(new RageDiamond());

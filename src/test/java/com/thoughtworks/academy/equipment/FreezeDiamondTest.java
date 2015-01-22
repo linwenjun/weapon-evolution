@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.equipment;
 
-import com.thoughtworks.academy.player.OrdinaryPlayer;
+import com.thoughtworks.academy.player.Mortal;
 import com.thoughtworks.academy.additionalAttackState.FreezeAttackAdditionalState;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,15 +14,15 @@ import static org.mockito.Mockito.*;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(FreezeDiamond.class)
 public class FreezeDiamondTest {
-    private OrdinaryPlayer tom;
-    private OrdinaryPlayer bob;
+    private Mortal tom;
+    private Mortal bob;
     private FreezeDiamond freezeDiamond;
 
     @Before
     public void setUp() throws Exception {
 
-        tom = mock(OrdinaryPlayer.class);
-        bob = mock(OrdinaryPlayer.class);
+        tom = mock(Mortal.class);
+        bob = mock(Mortal.class);
         freezeDiamond = new FreezeDiamond();
     }
 

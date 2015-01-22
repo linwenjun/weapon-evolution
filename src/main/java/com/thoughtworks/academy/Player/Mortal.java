@@ -2,13 +2,13 @@ package com.thoughtworks.academy.player;
 
 import com.thoughtworks.academy.equipment.Weapon;
 
-public class OrdinaryPlayer extends Player {
+public class Mortal extends Player {
 
-    public OrdinaryPlayer(String name, int blood, int attack) {
+    public Mortal(String name, int blood, int attack) {
         super(name, blood, attack);
     }
 
-    public OrdinaryPlayer(String name) {
+    public Mortal(String name) {
         super(name);
     }
 
