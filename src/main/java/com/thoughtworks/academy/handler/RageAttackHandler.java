@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.equipment.IDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
 
@@ -11,7 +11,7 @@ public class RageAttackHandler  extends GameHandler{
     }
 
     @Override
-    protected void actOnPlayers(Player provider, Player receiver) {
+    protected void actOnPlayers(OrdinaryPlayer provider, OrdinaryPlayer receiver) {
         if (provider.isExhausted() || receiver.isDead()) return;
 
         Weapon weapon = provider.getWeapon();

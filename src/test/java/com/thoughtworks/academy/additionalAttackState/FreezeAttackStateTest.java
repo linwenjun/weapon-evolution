@@ -1,7 +1,7 @@
 package com.thoughtworks.academy.additionalAttackState;
 
 import com.thoughtworks.academy.GameMessage;
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class FreezeAttackStateTest {
     @Test
     public void testActOnReceiver() throws Exception {
 
-        Player tom = mock(Player.class);
+        OrdinaryPlayer tom = mock(OrdinaryPlayer.class);
         whenNew(GameMessage.class).withAnyArguments().thenReturn(mock(GameMessage.class));
 
         freezeAttackState.actOnReceiver(tom);

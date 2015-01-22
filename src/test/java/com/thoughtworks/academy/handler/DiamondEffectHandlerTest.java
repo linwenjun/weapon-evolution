@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.equipment.IDiamond;
 import com.thoughtworks.academy.equipment.FireDiamond;
 import com.thoughtworks.academy.equipment.Weapon;
@@ -15,8 +15,8 @@ public class DiamondEffectHandlerTest {
 
         GameHandler handler = new DiamondEffectHandler(null);
         Weapon sword = mock(Weapon.class);
-        Player tom = mock(Player.class);
-        Player bob = mock(Player.class);
+        OrdinaryPlayer tom = mock(OrdinaryPlayer.class);
+        OrdinaryPlayer bob = mock(OrdinaryPlayer.class);
         IDiamond diamond = mock(FireDiamond.class);
 
         when(bob.getWeapon()).thenReturn(sword);

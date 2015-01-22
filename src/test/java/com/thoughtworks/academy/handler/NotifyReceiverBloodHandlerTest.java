@@ -2,7 +2,7 @@ package com.thoughtworks.academy.handler;
 
 import com.thoughtworks.academy.GameMessage;
 import com.thoughtworks.academy.IListener;
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.Publisher;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,14 +21,14 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 public class NotifyReceiverBloodHandlerTest {
 
     NotifyReceiverBloodHandler handler;
-    Player tom;
-    Player bob;
+    OrdinaryPlayer tom;
+    OrdinaryPlayer bob;
 
     @Before
     public void setUp() throws Exception {
         handler = new NotifyReceiverBloodHandler(null);
-        tom = mock(Player.class);
-        bob = mock(Player.class);
+        tom = mock(OrdinaryPlayer.class);
+        bob = mock(OrdinaryPlayer.class);
     }
 
 

@@ -2,7 +2,7 @@ package com.thoughtworks.academy.additionalAttackState;
 
 import com.thoughtworks.academy.GameMessage;
 import com.thoughtworks.academy.IListener;
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.Publisher;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,7 +31,7 @@ public class FireAttackStateTest {
         AdditionalAttackState fireAdditionalAttackState = new FireAttackAdditionalState();
 
 
-        Player tom = new Player("tom");
+        OrdinaryPlayer tom = new OrdinaryPlayer("tom");
         tom.attachAttackState(fireAdditionalAttackState);
 
         tom.releaseStateAttack();
@@ -49,7 +49,7 @@ public class FireAttackStateTest {
     public void testMultipleFireStateAttack() throws Exception {
 
         FireAttackAdditionalState fireAttackState = new FireAttackAdditionalState();
-        Player tom = new Player("tom");
+        OrdinaryPlayer tom = new OrdinaryPlayer("tom");
         tom.attachAttackState(fireAttackState);
 
         tom.releaseStateAttack();
@@ -70,7 +70,7 @@ public class FireAttackStateTest {
     @Test
     public void testPublishGameMessage() throws Exception {
         IListener listener = mock(IListener.class);
-        Player tom = mock(Player.class);
+        OrdinaryPlayer tom = mock(OrdinaryPlayer.class);
         AdditionalAttackState fireAdditionalAttackState = new FireAttackAdditionalState();
 
         Publisher.getInstance().addListener(listener);

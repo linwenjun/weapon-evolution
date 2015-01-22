@@ -2,7 +2,7 @@ package com.thoughtworks.academy.equipment;
 
 import com.thoughtworks.academy.GameMessage;
 import com.thoughtworks.academy.IListener;
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.Publisher;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,16 +18,16 @@ import static org.powermock.api.mockito.PowerMockito.whenNew;
 @PrepareForTest(RageDiamond.class)
 public class RageDiamondTest {
 
-    private Player tom;
-    private Player bob;
+    private OrdinaryPlayer tom;
+    private OrdinaryPlayer bob;
     private RageDiamond rageDiamond;
     private Weapon sword;
 
     @Before
     public void setUp() throws Exception {
         rageDiamond = new RageDiamond();
-        tom = mock(Player.class);
-        bob = mock(Player.class);
+        tom = mock(OrdinaryPlayer.class);
+        bob = mock(OrdinaryPlayer.class);
         sword = mock(Weapon.class);
 
         Publisher.getInstance().removeAll();

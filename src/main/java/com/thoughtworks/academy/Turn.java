@@ -1,6 +1,6 @@
 package com.thoughtworks.academy;
 
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.handler.GameHandler;
 
 public class Turn {
@@ -10,7 +10,7 @@ public class Turn {
         this.handler = handler;
     }
 
-    public void process(Player provider, Player receiver) {
+    public void process(OrdinaryPlayer provider, OrdinaryPlayer receiver) {
         handler.actOn(provider, receiver);
 
         provider.restore();

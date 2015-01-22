@@ -23,14 +23,14 @@ import static org.powermock.api.mockito.PowerMockito.verifyNew;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(Player.class)
-public class PlayerTest {
+@PrepareForTest(OrdinaryPlayer.class)
+public class OrdinaryPlayerTest {
 
-    Player tom;
+    OrdinaryPlayer tom;
 
     @Before
     public void setUp() throws Exception {
-        tom = new Player("tom");
+        tom = new OrdinaryPlayer("tom");
 
     }
 
@@ -45,7 +45,7 @@ public class PlayerTest {
         BlankAttackState blankAttackState = mock(BlankAttackState.class);
         whenNew(BlankAttackState.class).withNoArguments().thenReturn(blankAttackState);
 
-        Player tom = new Player("tom", 100, 25);
+        OrdinaryPlayer tom = new OrdinaryPlayer("tom", 100, 25);
         tom.setDefense(10);
 
         assertThat(tom.getName(), is("tom"));
@@ -59,7 +59,7 @@ public class PlayerTest {
 
     @Test
     public void testPlayerConstructorWithName() throws Exception {
-        Player tom = new Player("tom");
+        OrdinaryPlayer tom = new OrdinaryPlayer("tom");
 
         assertThat(tom.getName(), is("tom"));
         assertThat(tom.getCareer(), is("普通人"));
@@ -69,14 +69,14 @@ public class PlayerTest {
 
     @Test
     public void testPlayerWithName() throws Exception {
-        Player player = new Player("tom", 100, 10);
+        OrdinaryPlayer player = new OrdinaryPlayer("tom", 100, 10);
         player.beenAttack(20);
         assertThat(80, is(player.getBlood()));
     }
 
     @Test
     public void testUpdateWhenBeenAttack() throws Exception {
-        Player tom = new Player("tom");
+        OrdinaryPlayer tom = new OrdinaryPlayer("tom");
         IListener listener = mock(IListener.class);
         Publisher.getInstance().addListener(listener);
 
@@ -88,7 +88,7 @@ public class PlayerTest {
     @Test
     public void testPlayerLock() throws Exception {
 
-        Player tom = new Player("tom");
+        OrdinaryPlayer tom = new OrdinaryPlayer("tom");
         assertThat(tom.isLocked(), is(false));
         tom.lock();
         assertThat(tom.isLocked(), is(true));
@@ -98,7 +98,7 @@ public class PlayerTest {
 
     @Test
     public void testEnergy() throws Exception {
-        Player tom = new Player("tom");
+        OrdinaryPlayer tom = new OrdinaryPlayer("tom");
 
         assertThat(tom.hasEnergy(), is(true));
         tom.consumeEnergy();

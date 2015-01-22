@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.equipment.Weapon;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,14 +15,14 @@ import static org.mockito.Mockito.*;
 @RunWith(PowerMockRunner.class)
 public class PhysicalAttackHandlerTest {
     PhysicalAttackHandler physicalAttackHandler;
-    Player tom;
-    Player bob;
+    OrdinaryPlayer tom;
+    OrdinaryPlayer bob;
 
     @Before
     public void setUp() throws Exception {
         physicalAttackHandler = new PhysicalAttackHandler(null);
-        tom = mock(Player.class);
-        bob = mock(Player.class);
+        tom = mock(OrdinaryPlayer.class);
+        bob = mock(OrdinaryPlayer.class);
     }
 
     @Test

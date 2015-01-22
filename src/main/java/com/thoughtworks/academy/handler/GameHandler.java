@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 
 public abstract class GameHandler {
     protected GameHandler successor;
@@ -9,7 +9,7 @@ public abstract class GameHandler {
         this.successor = successor;
     }
 
-    public final void actOn(Player provider, Player receiver) {
+    public final void actOn(OrdinaryPlayer provider, OrdinaryPlayer receiver) {
         this.actOnPlayers(provider, receiver);
 
         if (null != successor) {
@@ -17,5 +17,5 @@ public abstract class GameHandler {
         }
     }
 
-    protected abstract void actOnPlayers(Player provider, Player receiver);
+    protected abstract void actOnPlayers(OrdinaryPlayer provider, OrdinaryPlayer receiver);
 }

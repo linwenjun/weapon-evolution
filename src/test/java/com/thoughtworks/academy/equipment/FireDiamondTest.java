@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.equipment;
 
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.additionalAttackState.FireAttackAdditionalState;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,13 +15,13 @@ import static org.mockito.Mockito.*;
 
 public class FireDiamondTest {
 
-    private Player tom;
-    private Player bob;
+    private OrdinaryPlayer tom;
+    private OrdinaryPlayer bob;
     @Before
     public void setUp() throws Exception {
 
-        tom = mock(Player.class);
-        bob = mock(Player.class);
+        tom = mock(OrdinaryPlayer.class);
+        bob = mock(OrdinaryPlayer.class);
     }
 
     @Test

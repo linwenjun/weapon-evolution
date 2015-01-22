@@ -9,22 +9,22 @@ import com.thoughtworks.academy.equipment.Weapon;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Player {
-
+public abstract class Player {
     protected final static String PLAYER = "普通人";
     protected final static String SOLDIER = "战士";
     protected final static String KNIGHT = "骑士";
     protected final static String ASSASSIN = "刺客";
 
+    protected String name;
+    protected int blood;
+    protected int attack;
     protected int defense;
-
-    private String name;
-    private int blood;
-    private int attack;
-    private AdditionalAttackState additionalAttackState = new BlankAttackState();;
+    protected boolean locked;
+    protected boolean energy;
     protected Weapon weapon;
-    private boolean locked;
-    private Boolean energy;
+
+    private AdditionalAttackState additionalAttackState = new BlankAttackState();
+    ;
 
     public Player(String name, int blood, int attack) {
         this.name = name;
@@ -36,6 +36,24 @@ public class Player {
 
     public Player(String name) {
         this(name, 100, 10);
+    }
+
+    public void releaseStateAttack() {
+        additionalAttackState.actOnReceiver(this);
+    }
+
+    public void attachAttackState(AdditionalAttackState newState) {
+
+        String type = newState.getType();
+        Map<String, String> info = new HashMap<String, String>();
+        info.put("receiver", name);
+        Publisher.getInstance().notifyListeners(new GameMessage("beenAttackBy" + type, info));
+
+        additionalAttackState = additionalAttackState.turn(newState);
+    }
+
+    public AdditionalAttackState getAttackState() {
+        return additionalAttackState;
     }
 
     public String getName() {
@@ -63,7 +81,6 @@ public class Player {
     }
 
     public void beenAttack(int hurtValue) {
-
         blood -= hurtValue;
     }
 
@@ -71,24 +88,7 @@ public class Player {
         this.defense = value;
     }
 
-
-    public void releaseStateAttack() {
-        additionalAttackState.actOnReceiver(this);
-    }
-
-    public void attachAttackState(AdditionalAttackState newState) {
-
-        String type = newState.getType();
-        Map<String, String> info = new HashMap<String, String>();
-        info.put("receiver", name);
-        Publisher.getInstance().notifyListeners(new GameMessage("beenAttackBy" + type, info));
-
-        additionalAttackState = additionalAttackState.turn(newState);
-    }
-
-    public void setWeapon(Weapon weapon) {
-        throw new RuntimeException();
-    }
+    public abstract void setWeapon(Weapon weapon);
 
     public boolean isDead() {
         return blood <= 0;
@@ -125,12 +125,8 @@ public class Player {
     public void restore() {
         energy = true;
         locked = false;
-        if(null != weapon) {
+        if (null != weapon) {
             weapon.restore();
         }
-    }
-
-    public AdditionalAttackState getAttackState() {
-        return additionalAttackState;
     }
 }

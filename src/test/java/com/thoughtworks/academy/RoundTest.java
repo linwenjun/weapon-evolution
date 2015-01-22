@@ -1,6 +1,6 @@
 package com.thoughtworks.academy;
 
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.handler.GameHandler;
 import com.thoughtworks.academy.handler.PhysicalAttackHandler;
 import org.junit.Test;
@@ -19,8 +19,8 @@ public class RoundTest {
     @Test
     public void testNewRound() throws Exception {
         PhysicalAttackHandler handler = mock(PhysicalAttackHandler.class);
-        Player tom = mock(Player.class);
-        Player bob = mock(Player.class);
+        OrdinaryPlayer tom = mock(OrdinaryPlayer.class);
+        OrdinaryPlayer bob = mock(OrdinaryPlayer.class);
 
         whenNew(PhysicalAttackHandler.class).withAnyArguments().thenReturn(handler);
         whenNew(Turn.class).withAnyArguments().thenReturn(mock(Turn.class));
@@ -34,8 +34,8 @@ public class RoundTest {
     public void testRoundStart() throws Exception {
         PhysicalAttackHandler handler = mock(PhysicalAttackHandler.class);
         Turn turn = mock(Turn.class);
-        Player tom = mock(Player.class);
-        Player bob = mock(Player.class);
+        OrdinaryPlayer tom = mock(OrdinaryPlayer.class);
+        OrdinaryPlayer bob = mock(OrdinaryPlayer.class);
 
         whenNew(PhysicalAttackHandler.class).withAnyArguments().thenReturn(handler);
         whenNew(Turn.class).withAnyArguments().thenReturn(turn);

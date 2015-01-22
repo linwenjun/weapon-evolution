@@ -1,6 +1,6 @@
 package com.thoughtworks.academy.handler;
 
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,8 +18,8 @@ public class AdditionalAttackStateHandlerTest {
 
     @Test
     public void testActOnUser() throws Exception {
-        Player bob = mock(Player.class);
-        Player tom = mock(Player.class);
+        OrdinaryPlayer bob = mock(OrdinaryPlayer.class);
+        OrdinaryPlayer tom = mock(OrdinaryPlayer.class);
 
         stateAttackHandler.actOn(bob, tom);
         verify(bob, times(1)).releaseStateAttack();

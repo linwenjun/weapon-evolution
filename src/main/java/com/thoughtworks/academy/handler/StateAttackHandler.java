@@ -1,7 +1,7 @@
 package com.thoughtworks.academy.handler;
 
 import com.thoughtworks.academy.GameMessage;
-import com.thoughtworks.academy.player.Player;
+import com.thoughtworks.academy.player.OrdinaryPlayer;
 import com.thoughtworks.academy.Publisher;
 
 import java.util.HashMap;
@@ -14,7 +14,7 @@ public class StateAttackHandler extends GameHandler {
     }
 
     @Override
-    protected void actOnPlayers(Player provider, Player receiver) {
+    protected void actOnPlayers(OrdinaryPlayer provider, OrdinaryPlayer receiver) {
         provider.releaseStateAttack();
 
         if (provider.isDead()) {
