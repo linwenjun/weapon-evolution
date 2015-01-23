@@ -21,11 +21,6 @@ public abstract class Technologist extends Player {
         return this.defense;
     }
 
-    @Override
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
     public void setWeapon(Weapon weapon) {
         if (0 > Arrays.binarySearch(this.suitableWeaponSize, weapon.getSize())) {
             throw(new RuntimeException("Unsuitable Weapon Size"));

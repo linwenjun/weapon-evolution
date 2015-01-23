@@ -76,7 +76,7 @@ public abstract class Player {
     }
 
     public Weapon getWeapon() {
-        return null;
+        return weapon;
     }
 
     public void beenAttack(int hurtValue) {
