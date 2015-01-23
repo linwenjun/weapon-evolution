@@ -1,17 +1,14 @@
 package com.thoughtworks.academy;
 
 public class Game {
-    private static Person p1;
-    private static Person p2;
 
-    public static void main(String[] args) {
-
-        p1 = new Person("张三", 100, 13);
-        p2 = new Person("李四", 100, 12);
+    public Game(Person p1, Person p2) {
 
         while (p1.isLive() && p2.isLive()) {
             p1.attack(p2);
-            swap();
+            Person temp = p1;
+            p1 = p2;
+            p2 = temp;
         }
 
         Person deadPerson = p1.isLive() ? p2 : p1;
@@ -19,9 +16,9 @@ public class Game {
         System.out.print(deadPerson.getName() + "被击败了。");
     }
 
-    private static void swap() {
-        Person temp = p1;
-        p1 = p2;
-        p2 = temp;
+    public static void main(String[] args) {
+        Person chang = new Person("张三", 100, 10);
+        Person lee = new Person("李四", 100, 12);
+        new Game(chang, lee);
     }
 }

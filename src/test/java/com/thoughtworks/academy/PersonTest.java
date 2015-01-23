@@ -58,7 +58,6 @@ public class PersonTest {
 
         tom.beenAttack(60);
         assertThat(tom.getHealth(), is(-20));
-        assertThat(outContent.toString(), is("tom被打败了.\n"));
     }
 
     @Test
