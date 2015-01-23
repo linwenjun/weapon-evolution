@@ -8,9 +8,7 @@ import java.io.PrintStream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 public class PersonTest {
     private ByteArrayOutputStream outContent;
@@ -24,6 +22,13 @@ public class PersonTest {
     }
 
     @Test
+    public void testField() throws Exception {
+
+        assertThat(tom.getName(), is("tom"));
+        assertThat(tom.getHealth(), is(100));
+    }
+
+    @Test
     public void testAttack() throws Exception {
 
         Person bob = mock(Person.class);
@@ -33,24 +38,38 @@ public class PersonTest {
     }
 
     @Test
+    public void testAttackWithStatement() throws Exception {
+
+        Person bob = new Person("bob", 80, 10);
+
+        tom.attack(bob);
+
+        assertThat(outContent.toString(), is("tom攻击了bob,bob受到了10点伤害,bob剩余生命：70\n"));
+    }
+
+
+
+    @Test
     public void testBeenAttack() throws Exception {
 
         tom.beenAttack(60);
+        assertThat(tom.getHealth(), is(40));
         assertThat(outContent.toString(), is(""));
 
         tom.beenAttack(60);
+        assertThat(tom.getHealth(), is(-20));
         assertThat(outContent.toString(), is("tom被打败了.\n"));
     }
 
     @Test
     public void testIsDead() throws Exception {
 
-        assertThat(tom.isDead(), is(false));
+        assertThat(tom.isLive(), is(true));
 
         tom.beenAttack(50);
-        assertThat(tom.isDead(), is(false));
+        assertThat(tom.isLive(), is(true));
 
         tom.beenAttack(50);
-        assertThat(tom.isDead(), is(true));
+        assertThat(tom.isLive(), is(false));
     }
 }
